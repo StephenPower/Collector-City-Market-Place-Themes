@@ -1,0 +1,111 @@
+<div class="grid_ 18 prefix_1 suffix_1" id="my_orders">
+  
+
+  <!-- bids -->
+  <h1 class="border">My Bids</h1>
+  {% if bids %}
+    {% for lot in bids %}
+      <div class="grid_7">
+        <div class="grid_3 alpha omega">
+          <a href="{{ lot.url }}"><img src="{% if lot.image.small %}{{ lot.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" width=100px /></a>
+        </div>
+        <div class="grid_4 alpha omega">
+          <h3><a href="{{ lot.url }}">{{ lot.title|title }}</a></h3>
+          <p>
+          {% if lot.is_active %}
+            {% if lot.count_bids is sameas 0 %}
+              Starting bid
+            {% else %}
+              Current bid
+            {% endif %}
+          {% else %}
+            Final bid
+          {% endif %}
+          : {{ lot.current_bid }}
+          </p>
+          <p>Time Left: {{ lot.time_left }}</p>
+        </div>
+        <div class="clear"></div>     
+      </div>
+    
+      <div class="grid_11">
+        <h5>Bidding History</h5>
+    
+        <div class="grid_3 omega">Bidder</div>
+        <div class="grid_2 omega">Bid amount</div>
+        <div class="grid_4 omega">Bid time</div>
+        <div class="clear"></div>
+      
+        {% for bid in lot.history %}
+          <div class="{{ loop.cycle('detail1', 'detail2') }}">
+            <div class="grid_3 omega">{{ bid.bidder_username }}</div>
+            <div class="grid_2 omega">{{ bid.bid_amount }}</div>
+            <div class="grid_6 omega">{{ bid.bid_time }}</div>
+            <div class="clear"></div>
+          </div>
+        {% endfor %}
+      
+      </div>
+    
+      <div class="clear"></div>
+
+    <br/>
+    {% endfor %}
+        {% else %}
+             <h3>No bids</h3>
+  {% endif %}
+
+        <br/>
+
+  <!-- orders -->
+        <h1 class="border">My Orders</h1>
+  {% if my_orders %}
+    <div class="grid_1">ID</div>
+    <div class="grid_5">Time</div>
+    <div class="grid_2">Total</div>
+    <div class="clear"></div>
+  
+    {% for sell in my_orders %}
+      <div class="grid_1">{{ sell.id }}</div>
+      <div class="grid_5">{{ sell.date_time }}</div>
+      <div class="grid_2">{{ sell.total }}</div>
+      <div class="clear"></div>
+      <div class="grid_8 prefix_1">
+        <h4>Details:</h4>   
+        {% for item_sell in sell.item_set %}
+          <div class="grid_2 alpha omega">
+            <a href="{{ item_sell.url }}"><img src="{% if item_sell.image.small %}{{ item_sell.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" width=50px /></a>
+          </div>
+          <div class="grid_3 alpha omega">
+            <p><a href="{{ item_sell.url }}">{{ item_sell.title|title }}</a></p>
+          </div>
+          <div class="grid_3 alpha omega">
+            <p>Price: {{ item_sell.price }}</p>
+          </div>
+          <div class="clear"></div>
+        {% endfor %}
+      </div>
+      <div class="grid_8 resume_shopping">
+        <h4>Payment Status</h4>     
+        {% for payment in sell.payment_history %}
+          <p>{{ payment.date_time }} - {{ payment.state }}</p>
+        {% endfor %}
+
+        {% if sell.shipping_history %}
+          <h4>Shipping Status</h4>      
+          {% for shipping in sell.shipping_history %}
+            <p>{{ shipping.date_time }} - {{ shipping.state }}</p>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="clear"></div>
+      <br/><br/>
+    {% endfor %}
+  
+    <br/><br/><br/>
+        {% else %}
+             <h3>No orders</h3>
+  {% endif %}
+
+
+</div>

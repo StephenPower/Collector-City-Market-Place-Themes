@@ -1,0 +1,36 @@
+<div class="grid_20" id="blog">
+
+
+
+
+  <div class="grid_4 bg">
+    <h4 class="border">Latest Posts</h4>
+
+        {% for post in last_posts %}
+          <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+          <span class="posted">{{ post.date_time }}</span><br/>
+          {{ post.body|truncate(60) }}
+        {% endfor %}
+
+  </div>
+
+  <div class="grid_12 prefix_1 suffix_1" id="post">
+        {% for post in posts %}
+          <div class="border">      
+            <h1><a href="{{ post.url }}">{{ post.title|title }}</a></h1>
+            <span class="posted">{{ post.date_time }}</span>
+            {{ post.body|safe }}
+          </div>
+        {% endfor %}    
+        </div>
+
+    
+  <div class="clear"></div>
+  
+  
+  <div class="pagination prefix_1">
+        {{ paginator }}
+  </div>
+
+</div>  
+<div class="clear"></div>

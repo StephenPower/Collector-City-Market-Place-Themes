@@ -1,0 +1,12 @@
+<div class="span-13" id="home">
+        <h1>{{ home.title }}</h1>
+	<p>{{ home.body }}</p>
+        {{ mailing_list }}
+</div>
+<div class="span-8">
+	{% if home.image %}
+		<img src="{{ home.image.url }}" width=300px />
+	{% endif %}
+</div>
+
+<div class="clear"></div>

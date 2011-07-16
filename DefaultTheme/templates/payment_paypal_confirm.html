@@ -1,0 +1,10 @@
+<h2>Please confirm your payment!</h2>
+<div class="span-22">
+    <p>Total amount: {{ total_amount }}</p>
+    <form action="." method="post">
+            {{ form_paypal_confirm }}
+	    <a href="{{ cancel_url }}">Cancel</a>
+	    or
+	    <button class="awesome" type="submit" name="action" value="confirm">Confirm</button>
+    </form>
+</div>

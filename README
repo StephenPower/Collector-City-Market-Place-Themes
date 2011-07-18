@@ -1,18 +1,23 @@
-Django Market Grid960 Theme 
+Django Market Grid960 & BluePrint Based CSS Themes 
+
+BluePrint CSS: DefaultShopTheme.zip
+Grid960 Theme: Grid960.zip
 
 License: Apache 2.0
 
 Additional Components: BluePrint CSS and Grid960 See respective license files
-
 Authors: Stephen Power and Contributors
 
-Design Documentation In Progress.
+Basic Directiosn:
+To upload a theme, upload the zip file to the shop admin. Go to Web Store, Theme, Upload. Please backup the existing theme first.
 
-For now, to upload a theme, upload the zip file to the shop admin
+The location for the shop admin is at:
 
 marketplace.example.com/admin
 
-Admin login required for shop upload.
+Substitute your shop name for marketplace and name of the primary site for example.com
 
-Note: Uploading theme will overwrite the existing theme.
+Notes:
+Admin login required for shop upload.
+Uploading theme will overwrite the existing theme.
 

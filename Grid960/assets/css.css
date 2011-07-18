@@ -1,0 +1,993 @@
+/**
+ * HTML5 Boilerplate *
+ * style.css contains a reset, font normalization and some base styles.
+ *
+ * Credit is left where credit is due.
+ * Much inspiration was taken from these projects:
+ * - yui.yahooapis.com/2.8.1/build/base/base.css
+ * - camendesign.com/design/
+ * - praegnanz.de/weblog/htmlcssjs-kickstart
+ */
+
+
+/**
+ * html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
+ * v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
+ * html5doctor.com/html-5-reset-stylesheet/
+ */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after { content: ""; content: none; }
+
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+
+del { text-decoration: line-through; }
+
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+input, select { vertical-align: middle; height}
+
+
+/**
+ * Font normalization inspired by YUI Library's fonts.css: developer.yahoo.com/yui/
+ */
+
+body { font:13px/1.231 sans-serif; *font-size:small; } /* Hack retained to preserve specificity */
+select, input, textarea, button { font:99% sans-serif; }
+
+/* Normalize monospace sizing:
+   en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+.large     { font-size: 1.2em; line-height: 2.5em; margin-bottom: 1.25em; }
+
+/**
+ * Minimal base styles.
+ */
+
+/* Always force a scrollbar in non-IE */
+html { overflow-y: scroll; }
+
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active { outline: none; }
+
+ul, ol { margin-left: 2em; }
+ol { list-style-type: decimal; }
+
+/* Remove margins for navigation lists */
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+
+small { font-size: 85%; }
+strong, th { font-weight: bold; }
+
+td { vertical-align: top; }
+
+/* Set sub, sup without affecting line-height: gist.github.com/413930 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+pre {
+  /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+  white-space: pre; white-space: pre-wrap; word-wrap: break-word;
+  padding: 15px;
+}
+
+textarea { overflow: auto; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+
+.ie6 legend, .ie7 legend { margin-left: -7px; } 
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea { margin: 0; }
+
+/* Colors for form validity */
+input:valid, textarea:valid   {  }
+input:invalid, textarea:invalid {
+   border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red;
+}
+.no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+
+/* These selection declarations have to be separate
+   No text-shadow: twitter.com/miketaylr/status/12228805301
+   Also: hot pink! */
+::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
+::selection { background:#FF5E99; color:#fff; text-shadow: none; }
+
+/* j.mp/webkit-tap-highlight-color */
+a:link { -webkit-tap-highlight-color: #FF5E99; }
+
+/* Make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {  width: auto; overflow: visible; background-color: #ff9800; color: #fff;}
+
+/* Bicubic resizing for non-native sized IMG:
+   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+/**
+ * You might tweak these..
+ */
+
+body, select, input, textarea {
+  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
+  color: #444;
+  /* Set your base font here, to apply evenly */
+  /* font-family: Georgia, serif;  */
+}
+
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1, h2, h3, h4, h5, h6 { font-weight: bold;text-transform:Capitilize; }
+a, a:active, a:visited { color: #607890; }
+a:hover { color: #036; }
+
+
+input:focus { color: black }
+
+/* Font Defaults */
+/* --------------------------------------------------------------
+
+   typography.css
+   * Sets up some sensible default typography.
+
+-------------------------------------------------------------- */
+
+/* Default font settings.
+   The font-size percentage is of 16px. (0.75 * 16px = 12px) */
+html { font-size:100.01%; }
+body {
+  font-size: 75%;
+  color: #222;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+
+/* Headings
+-------------------------------------------------------------- */
+
+h1,h2,h3,h4,h5,h6 { font-weight: normal; color: #111; }
+
+h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
+h2 { font-size: 2em; margin-bottom: 1 em; }
+h3 { font-size: 1.5em; line-height: 1; margin-bottom: 1em; }
+h4 { font-size: 1.2em; line-height: 1.25; margin-bottom: 1.25em; }
+h5 { font-size: 1em; font-weight: bold; margin-bottom: 1.5em; }
+h6 { font-size: 1em; font-weight: bold; }
+
+h1 img, h2 img, h3 img,
+h4 img, h5 img, h6 img {
+  margin: 0;
+}
+ 
+
+/* Text elements
+-------------------------------------------------------------- */
+
+p           { margin:8px 0 ; font-size: 1.3em;line-height: 1.5em;}
+
+
+/*
+  These can be used to pull an image at the start of a paragraph, so
+  that the text flows around it (usage: <p><img class="left">Text</p>)
+ */
+.left       { float: left !important; }
+p .left     { margin: 1.5em 1.5em 1.5em 0; padding: 0; }
+.right      { float: right !important; }
+p .right    { margin: 1.5em 0 1.5em 1.5em; padding: 0; }
+
+a:focus,
+a:hover     { color: #09f; }
+a           { color: #263248; text-decoration: underline; }
+
+blockquote  { margin: 1.5em; color: #666; font-style: italic; }
+strong,dfn  { font-weight: bold; }
+em,dfn      { font-style: italic; }
+sup, sub    { line-height: 0; }
+
+abbr,
+acronym     { border-bottom: 1px dotted #666; }
+address     { margin: 0 0 1.5em; font-style: italic; }
+del         { color:#666; }
+
+pre         { margin: 1.5em 0; white-space: pre; }
+pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; }
+
+
+/* Lists
+-------------------------------------------------------------- */
+
+li ul,
+li ol  { margin: 0; }
+ul, ol { margin: 0 1.5em 1.5em 0; padding-left: 1.5em; }
+
+ul     { list-style-type: disc; }
+ol     { list-style-type: decimal; }
+
+dl     { margin: 0 0 1.5em 0; }
+dl dt  { font-weight: bold; }
+dd     { margin-left: 1.5em;}
+
+
+/* Tables
+-------------------------------------------------------------- */
+
+/*
+  Because of the need for padding on TH and TD, the vertical rhythm
+  on table cells has to be 27px, instead of the standard 18px or 36px
+  of other elements.
+ */
+table         { margin-bottom: 1.4em; width:100%; }
+th            { font-weight: bold; }
+thead th      { background: #c3d9ff; }
+th,td,caption { padding: 4px 10px 4px 5px; }
+/*
+  You can zebra-stripe your tables in outdated browsers by adding
+  the class "even" to every other table row.
+ */
+tbody tr:nth-child(even) td,
+tbody tr.even td  {
+  background: #e5ecf9;
+}
+tfoot       { font-style: italic; }
+caption     { background: #eee; }
+
+
+/* Misc classes
+-------------------------------------------------------------- */
+
+.small     { font-size: .8em; margin-bottom: 1.875em; line-height: 1.875em; }
+.hide      { display: none; }
+
+.quiet     { color: #666; }
+.loud      { color: #000; }
+.highlight { background:#ff0; }
+.added     { background:#060; color: #fff; }
+.removed   { background:#900; color: #fff; }
+
+.first     { margin-left:0; padding-left:0; }
+.last      { margin-right:0; padding-right:0; }
+.top       { margin-top:0; padding-top:0; }
+.bottom    { margin-bottom:0; padding-bottom:0; }
+
+/* Some Form Defaults */
+/* --------------------------------------------------------------
+
+   forms.css
+   * Sets up some default styling for forms
+   * Gives you classes to enhance your forms
+
+   Usage:
+   * For text fields, use class .title or .text
+   * For inline forms, use .inline (even when using columns)
+
+-------------------------------------------------------------- */
+
+/*
+  A special hack is included for IE8 since it does not apply padding
+  correctly on fieldsets
+ */
+label    { font-weight: bold;text-transform: capitalize;}
+fieldset { padding:0 1.4em 1.4em 1.4em; margin: 0 0 1.5em 0; border: 1px solid #ccc; }
+legend   { font-weight: bold; font-size:1.2em; margin-top:-0.2em; margin-bottom:1em; }
+
+fieldset, #IE8#HACK { padding-top:1.4em; }
+legend, #IE8#HACK { margin-top:0; margin-bottom:0; }
+
+/* Form fields
+-------------------------------------------------------------- */
+
+/*
+  Attribute selectors are used to differentiate the different types
+  of input elements, but to support old browsers, you will have to
+  add classes for each one. ".title" simply creates a large text
+  field, this is purely for looks.
+ */
+input[type=text], input[type=password], input[type=url], input[type=email],
+input.text, input.title,
+textarea {
+  background-color:#fff;
+  border:1px solid #bbb;
+  color:#000;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus,
+input.text:focus, input.title:focus,
+textarea:focus {
+  border-color:#666;
+}
+select { background-color:#fff; border-width:1px; border-style:solid; }
+
+input[type=text], input[type=password], input[type=url], input[type=email],
+input.text, input.title,
+textarea, select {
+  margin:0.5em 0;
+}
+
+input.text,
+input.title { width: 300px; padding:5px; }
+input.title { font-size:1.5em; }
+textarea    { width: 390px; height: 250px; padding:5px; }
+
+/*
+  This is to be used on forms where a variety of elements are
+  placed side-by-side. Use the p tag to denote a line.
+ */
+form.inline { line-height:3; }
+form.inline p { margin-bottom:0; }
+
+
+/* Success, info, notice and error/alert boxes
+-------------------------------------------------------------- */
+
+.error,
+.alert,
+.notice,
+.success,
+.info { padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
+
+.error, .alert, .errorlist { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4;font-size: 1.4em;line-height: 1.4em; text-transform: capitalize;}
+.notice        { background: #fff6bf; color: #514721; border-color: #ffd324; }
+.success       { background: #e6efc2; color: #264409; border-color: #c6d880; }
+
+#flash_message { margin: 0 10px 0 32px;
+	
+}
+.info          { background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error a, .alert a { color: #8a1f11; }
+.notice a          { color: #514721; }
+.success a         { color: #264409; }
+.info a            { color: #205791; }
+
+
+
+/* HTML Element */
+
+body {
+    /*font: 14px/1.3em Verdana, Arial, Helvetica, sans-serif;*/ 
+    font-family:Georgia,Utopia,'Times New Roman',Times,serif;
+    color: #444;
+    margin:0;
+    padding:0;
+
+    line-height: 1.5em;
+} 
+
+
+
+iframe{border:0px;}
+
+.big {
+  font-size:14px;
+  font-weight:bold;
+}
+
+.border {border-bottom:1px dashed #D5D2D0;}
+
+.border_top {border-top:1px dashed #D5D2D0;}
+
+.align_right { text-align: right;}
+
+.bg {
+  background-color: #000;
+  padding: 10px 20px;
+  color: white;
+}
+
+.bg h4 {margin-bottom: 0px;color: #fff;}
+
+.bg a {
+	color: white;
+}
+ /* main block */
+
+.body_container{
+  min-height: 500px;
+  margin: 2em 1em;
+  background-color: #fff;
+  padding: 1px;
+ 
+}
+ 
+.header{
+  height: 135px;
+  padding-bottom: 20px;
+  float:left;
+}
+
+.header h2 {
+  height:125px;
+  text-align:center;
+  padding: 0px 0 0 20px;
+  margin: 0px;
+  padding-top:72px;
+}
+
+.header #my_shopping_count {
+  height:55px;
+  top:0;
+}
+
+.header #go_myshopping {
+  height:35px;
+  background-color: #263248;
+  width:200px;
+  margin-left:499px;
+  margin-top: 10px;  
+}
+
+.header #go_myshopping p {
+  font-style:italic;
+  padding-top:10px;
+  text-align:center;
+  margin:0px;
+  font-size: small;
+}
+
+ul{
+  list-style:none outside none;
+}
+
+
+
+
+.menu{
+	font-size: 15px;
+	margin: 10px 10px;
+}
+
+ 
+.menu a{
+	display:block;
+	float:left;
+	padding:7px 2px;
+}
+
+
+.menu .current{
+  color:#FFF;  
+  background-color: #263248;
+  	
+}
+
+/* Search */
+
+
+.search{
+width: 960px;
+float: left;
+position: relative;
+bottom: 70px;
+}
+
+.search form{
+  padding:5px 10px;
+  float: right;
+  height: 30px;
+}
+
+
+.search input{
+  padding:6px;
+  width:840px;
+  float: left;
+  font:13px Georgia,Utopia,'Times New Roman',Times,serif;
+  text-transform: capitalize;
+  margin: 0 4px 0 0 ;
+}
+
+.search button{
+  background-color: white;
+  color: black;
+  height: 30px;
+  font-weight: bold; 
+	text-decoration: none; 
+	font-variant: normal;
+}
+
+/* Footer */
+
+
+.footer{
+  margin-top: 10px;
+  background-color: #7e8aa2;
+  color: #FFF;
+}
+.footer a {
+  color: #FFF;
+}
+
+.footer h3{
+  padding: 10px 12px;
+  margin: 0;
+  color: #ff9800;
+}
+
+#blog { 
+	text-align: justify;
+}
+
+.footer #title {
+
+}
+
+
+.footer p, a {
+  text-align: justify;
+  margin: 1em;
+} 
+
+ 
+.footer h5 a {
+  font-weight:bold;
+}
+
+.footer h5 {
+  text-align: justify;
+  margin: 1em;
+  
+  }
+.footer form{
+  padding-top: 10px; 
+}
+
+/*---------- PAGES ----------*/
+
+/* home */
+
+#go_myshopping p{
+  color:#B52D1D;
+}
+
+.CartTotal {
+	color: #ff9800;	
+	float: left;
+	width: 14px;
+	padding: 10px 0 ;
+}
+
+.home_title {
+	color: #000;
+}
+
+#home label {
+	display: inline;
+	float: left;
+}
+
+#home #id_email {
+	display: inline;
+	width: 30%;
+	float: left;
+	height: 2em;
+	
+}
+#home input {
+	display: inline;
+	width: 30%;
+	float: left;
+	height: 2em;
+}
+#go_myshopping a{
+  color:#FFFFFF;
+  float: left;
+  padding: 10px 5px 10px 15px;
+}
+
+
+/* Auctions */
+
+#id_amount{width: 90px;}
+
+.product {
+  display: inline;
+  float:left;
+  position:relative;
+}
+
+.Sessions ul a {
+	font-size: small;
+	line-height: 2em;
+
+}
+
+/* Auction History */
+
+
+
+.LotHistory a {
+	font-size: large;
+	margin: 15px 0; 
+	
+}
+
+.LotBidHistoryDetails {
+	float: left;
+}
+
+
+
+#auctions .product{
+  margin:1px 5px;
+}
+
+.product h3{
+  background: #263248;
+  height:31px;
+  padding-top:13px;
+  text-align:center;
+  color: #FFF;
+  width: 205px;
+  margin: 4px 0 4px 0;
+}
+
+.product h4{
+  text-align:center;
+  font-family:inherit;
+  margin: 0;
+  padding: 0;
+  font-weight:normal;
+  color: #7e8aa2;
+}
+
+.image{
+  background-color:#FF9800;
+  padding:8px;
+  width:189px;
+}
+
+.align{
+  width:240px;
+}
+
+
+#detail_product p {
+  margin:5px 0 0 0;
+  padding: 0;
+}
+
+/* For Sale */
+
+#for_sale .product{
+  margin:20px 10px;
+  height: 320px;
+}
+
+/* Checkout */
+
+input#id_zip {
+	width: 20%;
+}
+
+#id_country {
+		width: 40%;
+}
+
+#id_city {
+		width: 60%;
+}
+
+
+
+
+/* For Sale Item Detail */
+
+
+
+.item_description {
+	min-height: 400px;
+}
+
+#product img {
+	width: 190px;
+}
+
+/* my shopping */
+#my_shopping p{
+  margin: 0;
+}
+
+#my_shopping #title span{
+  font-size:13px;
+  font-weight:bold;
+  padding:35px 0 0 0;
+}
+
+#my_shopping .detail{
+  margin-top: 5px;
+}
+
+#my_shopping #detail1{
+  margin: 14px 0;
+  background-color:#F0EFEC; 
+  border-top :1px solid #D7D5D2;
+  font-size: large;
+}
+
+#title div.grid_3 {
+	font-size: large;
+}
+
+#my_shopping #detail2{
+  border-top :1px solid #D7D5D2;  
+}
+
+
+#my_shopping .detail img{
+  height:50px;
+  border: solid 5px #F0EFEC;
+} 
+
+#my_shopping .total{
+
+}
+
+#my_shopping .checkout{
+}
+
+/* Check Out */
+
+.body_container form label{
+	font-size: large;
+	display: block;
+	line-height: 1.5em;
+	margin: 0 10px 0 0 ;
+}
+
+.body_container form input {
+	width: 90%;
+	line-height: 1.9em;
+	height: 1.5em;
+}
+
+
+/* blog */
+
+#blog .posted  {
+  color:#ff9800;
+  font-style:italic;
+}
+
+
+
+#blog #post p {
+  text-align: justify;
+}
+
+
+/* Shopping */
+
+
+
+/* search */
+
+#search .product {
+  margin:20px 15px;
+}
+
+.search_result_product {
+  width: 122px;
+  display: inline-table;
+  float: left;
+  margin: 0 5px;
+  text-align: center;
+  background-color: #FF9800;
+}
+.search_result_product h4 {
+background-color: white;
+padding: 1px 1px;
+margin: 0;
+min-height:48px;
+
+}
+
+.search_result_product h5 {
+margin: 0;
+padding: 0;
+color: #FFF;
+line-height: 1.5em;
+font-size:large;
+
+}
+
+.search_result_product .product_image{
+ text-transform:capitalize
+}
+
+.search_result_product .product_image img{
+padding: 12px;
+color: transparent;
+}
+
+
+
+.search_no_result {text-transform:capitalize}
+
+
+/* grid */
+
+.title{
+  background-color: #CCCCCC;
+  margin: 5px 0 5px 0; 
+}
+
+.detail{font-size: normal;}
+
+.detail1{background-color: #EEEEEE;}
+.detail2{background-color: #CCCCCC;}
+
+
+/* Error */
+
+.error{
+  color: #444444; 
+  background: #ffdfdf;
+  margin: 15px 0 0 0px; 
+  padding: 3px;
+}
+
+
+/* Messages Flash */
+
+.error, .notice, .success {padding: 0 .8em; margin:1em 0; border:1px solid #ddd;}
+
+.error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+.notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
+.success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
+
+.error a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+
+
+/* Pagination */
+
+.pagination{
+    margin: 20px 0;
+}
+
+
+.pagination a:hover{
+    background-color: #444444;
+    border-color:#444444;
+    color:#FFFFFF;
+    text-decoration:none;
+}
+
+.pagination a, .pagination span{
+    -moz-border-radius-bottomleft:2px;
+    -moz-border-radius-bottomright:2px;
+    -moz-border-radius-topleft:2px;
+    -moz-border-radius-topright:2px;
+    border:1px solid #DDDDDD;
+    display:block;
+    float:left;
+    line-height:20px;
+    margin:1px 2px;
+    padding:0 4px;
+    text-decoration:none;
+}
+.disabled {
+    color:#DDDDDD;
+}
+.current{
+    background-color: #444444;
+    color:#FFFFFF;
+}
+
+/***************** LOGIN/REGISTER/SIGNUP STYLE *********************/
+
+
+.big_form fieldset { position:relative;  width:380px;  }
+.big_form .submit{ margin-bottom: 0; text-align: right; }
+.big_form .errors { float:right; text-align:right; }
+
+.big_form label { float:left;display: block; margin: 0 1px 0 0; font-size:1.4em; text-align:left; line-height: 1.5em;}
+
+.big_form input { float:none; width:405px; font-size:1.5em; text-align:left; margin-bottom:10px; height:1.5em; 
+	display: block;
+}
+.big_form input#id_shop_name { float:none; width:305px; font-size:1.5em; text-align:left; margin-bottom:10px; }
+.big_form input#id_terms { float:left; width: 20px; font-size:1.5em; text-align:left; margin-bottom:10px; }
+.big_form button { width: 420px !important; }
+
+
+
+
+fieldset { 
+  margin:1em 0; 
+  padding:20px;
+  border: 10px solid #7e8aa2;
+    -webkit-border-radius: 10px; 
+    -moz-border-radius: 10px; 
+    background-color:#FFFFFF; 
+}
+   
+.button_primary {
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+    padding: 4px;
+    max-width: 30%;
+ 
+}
+
+#lip {
+	font-size: large;
+	font-weight: bolder;
+	line-height: 2em;    
+    position: absolute;
+    margin-top: -75px;
+    text-align: center;
+    width: 308px;
+}
+
+
+.payment_box {
+  -moz-border-radius-bottomleft:10px;
+  -moz-border-radius-bottomright:10px;
+  -moz-border-radius-topleft:10px;
+  -moz-border-radius-topright:10px;
+  background-color:#FFFFDD;
+  border:3px solid #EEEEEE;
+  margin:1em 0;
+  padding:20px;
+}
+
+.shipping_box {
+  -moz-border-radius-bottomleft:10px;
+  -moz-border-radius-bottomright:10px;
+  -moz-border-radius-topleft:10px;
+  -moz-border-radius-topright:10px;
+  background-color:#FFFFEE;
+  border:3px solid #EEEEEE;
+  margin:1em 0;
+  padding:20px; 
+}
+
+#checkout_pipeline {
+  padding-left: 400px;
+}
+
+#bid_amount {
+  font-size: large;
+  color: red;
+}

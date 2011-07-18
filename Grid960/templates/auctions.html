@@ -1,0 +1,33 @@
+<div class="grid_13" id="auctions">
+
+  <h1>{{ session_title }}</h1>
+
+  {% if not lots %}
+    <h3>No lots in this session.</h3>
+  {% endif %}
+  {% for lot in lots %}
+    <div class="product">
+      <div class="image">
+        <div class="align">
+          <div>
+            <a href="{{ lot.url }}" id="product"><img src="{% if lot.image.medium %}{{ lot.image.medium }}{% else %}{{ 'no_photo_medium.png'|asset_url }}{% endif%}" width=140px/></a>
+          </div>
+        </div>
+      </div>
+      <h3>{{ lot.price }}</h3>
+      <h4><a href="{{ lot.url }}">{{ lot.title }}</a></h4>
+    </div>    
+  {% endfor %}
+
+</div>
+
+<div class="grid_5 alpha omega Sessions">
+    <h1>Sessions</h1>
+    {{ sessions }}    
+</div>
+
+<div class="clear"></div>
+  
+<div class="pagination prefix_1">
+    {{ paginator  }}
+</div>  

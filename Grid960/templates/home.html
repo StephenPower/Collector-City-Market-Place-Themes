@@ -1,0 +1,12 @@
+<div class="grid_10" id="home">
+        <h1>{{ home.title }}</h1>
+	<p>{{ home.body }}</p><br/><br/>
+        {{ mailing_list }}
+</div>
+<div class="grid_7">
+	{% if home.image %}
+		<img src="{{ home.image.url }}" width=300px/>
+	{% endif %}
+</div>
+
+<div class="clear"></div>

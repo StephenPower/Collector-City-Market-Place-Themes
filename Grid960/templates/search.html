@@ -1,0 +1,19 @@
+<div class="grid_18" id="search">
+
+{% if results|length  == 168 %}
+<p>Please Look at Our Items For <b><a href="/for_sale/">Sale</a> </b></p>
+</br>
+<p>Please Look at Our Items For<b> <a href="/auctions/">Auctions</a>  </b></p>
+  </br>
+<p>Please Look At Our Home Page<b> <a href="/home">Here</a></b></p>
+
+{% else %}
+    {{ results }}  
+{% endif %}
+</div>
+<div class="clear"></div>
+<div class="pagination prefix_1">
+            {{ paginator }}
+    </div>
+</div>
+<div class="clear"></div>

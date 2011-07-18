@@ -1,0 +1,18 @@
+Django Market Grid960 Theme 
+
+License: Apache 2.0
+
+Additional Components: BluePrint CSS and Grid960 See respective license files
+
+Authors: Stephen Power and Contributors
+
+Design Documentation In Progress.
+
+For now, to upload a theme, upload the zip file to the shop admin
+
+marketplace.example.com/admin
+
+Admin login required for shop upload.
+
+Note: Uploading theme will overwrite the existing theme.
+

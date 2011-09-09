@@ -1,0 +1,132 @@
+<script type="text/javascript" src="//s3.amazonaws.com/market-media.numismatichq.com/media/js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" >
+  $(function() {
+    $("table#sortTableExample").tablesorter({ sortList: [[1,0]] });
+  });
+</script>
+<script type="text/javascript" src="//s3.amazonaws.com/market-media.numismatichq.com/media/js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" >
+  $(function() {
+    $("table#sortTableExample2").tablesorter({ sortList: [[1,0]] });
+  });
+</script>
+ <!-- bids -->
+
+  {% if bids %}
+<h1 class="title">My Bids</h1>
+    {% for lot in bids %}
+<div class="row">
+        <div class="span2">
+          <a href="{{ lot.url }}"><img src="{% if lot.image.original %}{{ lot.image.original }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" width="100px" alt="{{ lot.title }}" /></a>
+        </div>
+        <div class="span3">
+          <h3><a href="{{ lot.url }}">{{ lot.title|title }}</a></h3>
+		
+		<p>
+          {% if lot.is_active %}
+            {% if lot.count_bids is sameas 0 %}
+              Starting bid
+            {% else %}
+              Current bid
+            {% endif %}
+          {% else %}
+            Final bid
+          {% endif %}
+          : {{ lot.current_bid }}
+  		</p>
+          <p>Time Left: {{ lot.time_left }}</p>
+</div>
+       <h5>Bidding History</h5>
+<div class="span8">
+<table class="zebra-stripped" id="sortTableExample2">
+     <thead>
+        <tr>
+        <th>Bidder</th>
+        <th>Bid amount</th>
+        <th>Bid time</th>
+     </tr>
+      </thead>
+     <tbody>
+        {% for bid in lot.history %}
+         <tr> 
+            <th>{{ bid.bidder_username }}</th>
+            <th>{{ bid.bid_amount }}</th>
+            <th>{{ bid.bid_time }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% endfor %}
+        {% else %}
+             <h3>No bids</h3>
+         <br/>
+</div>
+  {% endif %}
+</div>
+
+
+
+ <!-- orders -->
+
+  {% if my_orders %}
+<div class="row">
+<div class="span15">  
+ <div class="OrderHistory">
+Order History
+</div>
+</div>
+</div>
+
+{% for sell in my_orders|sort(true,false) %}
+<div class="row"> 
+    <div class="span4">
+        <p><strong>Order ID: {{ sell.id }}</strong></p>
+        <p><small>Date: {{ sell.date_time }}</small></p>
+        <p>Order Total: <b>{{ sell.total }}</b></p>
+    </div>
+<div class="span2">
+<h5>Items</h5>
+{% for item_sell in sell.item_set %}
+    <p> 
+    {% if item_sell.origional %}
+    <a href="{{ item_sell.url }}"><img src="{{ item_sell.image}}" alt="item_sell.title"/></a></p>
+    {% endif%}
+   <p><a href="{{ item_sell.url }}">{{ item_sell.title|title }}</a></p>
+  <p>Price: {{ item_sell.price }}</p>
+ {% endfor %}
+</div>
+<div class="span8">
+     <h5>Payment & Shipping Status</h5>  
+    <table class="zebra-striped" id="sortTableExample">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Activity Type</th>
+              </tr>
+        </thead>
+        <tbody>
+          
+                     {% for payment in sell.payment_history %}
+                      <tr>
+                        <td>{{ payment.date_time }} </td> 
+                        <td>Payment: {{ payment.state }}</td>
+                      </tr>
+                    {% endfor %}
+          
+            
+                    {% if sell.shipping_history %}
+                          {% for shipping in sell.shipping_history %}
+                          <tr>
+                          <td>{{ shipping.date_time }} </td>
+                           <td>Shipping: {{ shipping.state }}</small></td>
+                          </tr>
+                          {% endfor %}
+                  {% endif %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endfor %}
+{% else %}
+             <h3>No Orders</h3>
+  {% endif %}

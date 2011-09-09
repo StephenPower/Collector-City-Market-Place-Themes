@@ -1,0 +1,66 @@
+<div class="row" id="my_shopping">
+  
+  <!-- cart --> 
+
+  {% if not cart_items %}
+<div class="span16">
+    <h2>For Some Odd Reason, You're Cart Appears to Be Empty.....</h2>
+<p>Please Look at Our Items For <b><a href="/for_sale/">Sale</a> </b></p>
+<p>Please Look at Our Items For<b> <a href="/auctions/">Auctions</a>  </b></p>
+<p>Please Look At Our Home Page<b> <a href="/home">Here</a></b></p>
+  {% else %}
+    <table class="zebra-striped">
+        <tbody>
+        <tr>
+          <th>My Cart</th>
+          <th>Description</th>   
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Option </th>
+		</tr>
+    {% for item in cart_items %}
+        <tr>    
+        <td><a href="{{ item.url }}">
+			{% if item.image.small %}
+				<img src="{{ item.image.small }}" alt="{{ item.title }}" width="50px" />
+			{% else %}
+				<img src="{{ 'no_photo_small.png'|asset_url }}" alt="{{ item.title }}" />
+			{% endif %}
+		  </a>
+        </td>
+
+        <td><a href="{{ item.url }}">{{ item.title|title }}</a></td>          
+        <td>{{ item.price }}</td>         
+        <td>{{ item.qty }}</td>
+        <td>{{ item.sub_total }}</td>
+        <td> {% if item.can_remove %}
+            <a href="{{ item.url_remove }}" class="small awesome">Remove</a>
+          {% else %}
+            &nbsp;
+          {% endif %}
+        </td>
+  		</tr>
+    {% endfor %}
+        </tbody>
+        </table>
+</div>
+</div>
+
+<div class="row">
+    <div class="span15">
+      <h3 class="total">Total: {{ total }}</h3>
+      <h3><a href="/search/?q=">Continue Shopping </a></h3>
+     </div>
+<div class="row">
+<div class="span15">
+        <a href="{{ url_checkout }}" class="primary">Checkout</a>
+ </div>          
+ </div>
+  
+  {% endif %}
+
+</div>
+
+</body>
+</html>

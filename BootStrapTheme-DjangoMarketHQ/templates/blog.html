@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="span4">
+    <h5>Latest Posts</h5>
+        {% for post in last_posts %}
+          <h6><a href="{{ post.url }}">{{ post.title }}</a></h6>
+          <p>{{ post.date_time }}</p>
+         <p> {{ post.body|truncate(60) }}</p>
+        </div></strong>
+        {% endfor %}
+  </div>    
+</div>
+
+  <div class="span8">
+        {% for post in posts %}
+            <h1><a href="{{ post.url }}">{{ post.title|title }}</a></h1>
+           <p>{{ post.date_time }}</p>
+           <p>{{ post.body|safe }}</p>
+        {% endfor %}    
+</div>
+</div>
+    
+<div class="row">
+    <div class="span14">
+        <div class="pagination">
+            <ul>
+            {{ paginator }}
+            </ul>
+    </div>
+ </div>
+</div>  

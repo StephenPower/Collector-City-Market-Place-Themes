@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="span14">
+		<h1>For Sale</h1>
+        {% if not items %}
+          <h1>No items for sale.</h1>
+        {% endif %}
+	</div>
+</div>
+ 
+<div class="row">
+	<div class="span15">
+         {% for item in items %}
+            <div class="item_img_holder">
+            <div class="item">
+                 <a href="{{ item.url }}"><img src="{% if item.image.small %} {{ item.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" alt="{{item.title}}"/></a>
+            </div>
+                <a href="{{ item.url }}"><h3>{{ item.price }}</h3></a>
+                <a href="{{ item.url }}"><h5>{{ item.title }}</h5></a>
+ 	    </div>
+        	{% endfor %}
+    </div>
+</div>
+
+<div class="row">  
+  <div class="pagination">
+            {{ paginator }}
+  </div>
+</div>

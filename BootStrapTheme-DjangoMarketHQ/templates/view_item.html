@@ -29,38 +29,34 @@ $(document).ready(function () {
 </script>
 
 <div class="row">
-
-  <div class="span7">
-    <h2>{{ item.title|title }}</h2>
-    <p><a href="/search/?q={{ item.category }}">{{ item.category }}</a> >> <a href="/search/?q={{ item.subcategory }}">{{ item.subcategory }}</a></p>
-   {% if user_is_logged %}
-    {{ form }}      
-   {% else %}
-   <h4><a href="/login/">Please Login To Add Item To Cart</a> Or <a href="/register/"> Sign Up </a></h4>
-  {{ form }}    
-    {% endif %}
-
-  </div>
-
+	<div class="span7">
+    	<h2>{{ item.title|title }}</h2>
+    	<p><a href="/search/?q={{ item.category }}">{{ item.category }}</a> >> <a href="/search/?q={{ item.subcategory }}">{{ item.subcategory }}</a></p>
+    	{% if user_is_logged %}
+    		{{ form }}      
+   		{% else %}
+   			<h4><a href="/login/">Please Login To Add Item To Cart</a> Or <a href="/register/"> Sign Up </a></h4>
+  			{{ form }}    
+    	{% endif %}
+	</div>
   <div class="span5">
-    <div id="images">
-<div class="galleria clear">
-        <div id="image">
-      {% for img in images %}
-          <img src="{{ img.original }}"/>
-      {% endfor %}
+  	<div id="images">
+		<div class="galleria clear">
+        	<div id="image">
+      			{% for img in images %}
+          			<img src="{{ img.original }}"/>
+      			{% endfor %}
+  			</div>
+    	</div>
+	</div>
   </div>
-    </div>
-</div>
-
 </div>
   <div class="row">
-      <div class="span10">
-     <h2">Description</h2>
-         {{ item.description }}
+  	<div class="span10">
+    	<h2>Description</h2>
+        {{ item.description }}
     </div>
-</div>
-
+   </div>
 <script type="text/javascript">
     $('#images').galleria();
 </script>

@@ -1,12 +1,12 @@
 <div class="row">
 <h1>Step 2 of 2</h1>
-    {% if cart.items %}
+{% if cart.items %}
       <h2>Order Summary</h2>
     <div class="span10 columns">
-        <table class="zebra-striped">
+      <table class="zebra-striped">
             <theader>
             <tr>
-             <th>Image</th>
+            <th>Image</th>
             <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -15,7 +15,7 @@
             </theader>
  
           {% for item in cart.cart_items %}
-            <tr>
+           <tr>
             <td><img src="{% if item.image.small %}{{ item.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" width=50px />
             </td>
 
@@ -23,11 +23,11 @@
            <td> {{ item.price }}</td>
            <td>{{ item.qty }} </td>
            <td>{{ item.sub_total }} </td>
-        </tr> 
-       {% endfor %}
-  </table>        
- <table class="zebra-striped">
-     <tbody>
+          </tr>
+          {% endfor %}
+	</table>        
+<table class="zebra-striped">
+	<tbody>
     {% if payment_buttons %}
             <tr>
             <th>Select Payment Method</th></tr>
@@ -35,23 +35,34 @@
             {% for payment_button in payment_buttons %}
     
               <td class="hero-unit">{{ payment_button|safe }}</td>
-               </tr>
             {% endfor %}
              
-           {% else %}
-           <tr>
-          <td>
-            We don't have online payments available at this moment. Please, contact with {{ admin_email }} to finish your purchase.
-            </td>
-      	</tr>
-          {% endif %}
     {% else %}
         <tr>
-        <th>Your Cart Is Empty</th>
+          <td>
+            We don't have online payments available at this moment. Please, contact with {{ admin_email }} to finish your purchase.
+         </td>
+      	</tr>
+        </tbody>
+		</table>
+    {% endif %}
+<!-- If Cart Items Else -->
+{% else %}
+<table class="zebra-striped">
+	<tbody>
+        <theader>
+            <tr>
+            <th>Your Cart Is Empty</th>
+            </theader>
+            <tbody>
+            <tr>
+      		<td>Yes, it is...</td>
          </tr>
-    {% endif %} 
-    </tbody>
+         
+        </tbody>
 </table>
+{% endif %} 
+
 </div>
 
 <div class="span5 columns alert-message block-message"> 
@@ -98,6 +109,5 @@
 
 </tbody> 
 </table>     
-</div>
 </div>
 

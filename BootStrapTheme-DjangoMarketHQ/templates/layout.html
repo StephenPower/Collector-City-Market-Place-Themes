@@ -36,55 +36,42 @@
 	    </script>
 
  <!-- Le styles -->
-    <link href="{{ 'Extracted-Bootstrap-1.2.0.Css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'style.Css' | asset_url }}" rel="stylesheet">
+<link href="{{ 'Extracted-Bootstrap-1.2.0.Css' | asset_url }}" rel="stylesheet">
+<link href="{{ 'style.Css' | asset_url }}" rel="stylesheet">
 
 </head>
     
 <body>
 
-        <div class="topbar">
-            <div class="fill">
-                <div class="container">
-                     <h3>{{ shop_name|title }}</h3>
-                           {{ menu }} 
-                            <form action="{{ url_search }}" method="get">
-                            <input type="text" name="q" id="q" />
-                            <input type="button" class="primary" value="Search" id="seek" onclick="this.parentNode.submit(); return false;" />
-</form>
-
-                     {% if user_is_logged %}
-              <a href="{{ url_my_shopping }}">Cart {{ total_cart_items }} items.</a>
-      &nbsp;<a href="{{ url_my_orders }}">Check Orders</a>
-                        
-    </div>
-    {% endif %}    
- 
-                </div>
-            </div>
-        </div>
-        
- <div class="container">     
-
- 
-            <!-- FLASH MESSAGE  -->
-            <div id="flash_message">
-                {{ flash }}
-            </div>
-
-            <!-- CONTENT  -->
-            <div class="main_content">
-                {{ content }}
-            </div>
-
-
-
-            <!-- FOOTER -->            
-   <footer>
-         <p>&copy; Company 2011</p>
-    </footer>
-    
-        {{ footer }}
+<div class="topbar">
+	<div class="fill">
+		<div class="container">
+			 <h3>{{ shop_name|title }}</h3>
+			 {{ menu }} 
+				<form action="{{ url_search }}" method="get">
+				<input type="text" name="q" id="q" />
+				<input type="button" class="primary" value="Search" id="seek" onclick="this.parentNode.submit(); return false;" />
+				</form>
+			 {% if user_is_logged %}
+			 <a href="{{ url_my_shopping }}">Cart {{ total_cart_items }} items.</a> &nbsp;<a href="{{ url_my_orders }}">Check Orders</a>
+			 {% endif %}	
+		</div>
+	</div>
 </div>
-    </body>
+<div class="container">     
+	<!-- FLASH MESSAGE  -->
+    <div id="flash_message">
+    	{{ flash }}
+	</div>
+	<!-- CONTENT  -->
+    <div class="main_content">
+    	{{ content }}
+    </div>
+    <!-- FOOTER -->            
+	<footer>
+    	<p>&copy; Company 2011</p>
+    {{ footer }}
+	</footer>
+</div>
+</body>
 </html>

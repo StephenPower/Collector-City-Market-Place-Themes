@@ -1,0 +1,18 @@
+{% extends "default/community.html" %}
+{% load i18n %}
+
+{% block profiles_selection %}current_selection{% endblock %}
+
+{% block community_content %}
+
+<div class="grid_15 alpha omega margin_v">
+
+<h3>{% trans "Profiles for all our Dealers" %}</h3>
+{% for letter in letters %}
+<div class="grid_1 capital_letter">
+	<h2><a href="{% url community_profiles_list letter %}">{{ letter }}</a></h2>
+</div>
+{% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "default/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<ul class="breadcrumb">
+ <li><a href="{% url market_home %}">{% trans "Home" %}</a><span class="divider"> / </span></li>
+ <li><a href="{% url market_blog %}">{% trans "Blog" %}</a><span class="divider"> {{ post.title }}</span></li>
+</ul>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("div[id^='comment_box']").hide();
+});
+
+function open_shops_dialog(box_id){
+	var box = "comment_box_" + box_id;
+	$("#" + box).slideToggle();
+};
+
+function close_shops_dialog(box_id){
+	var box = "comment_box_" + box_id;
+	$("#" + box).slideUp();
+};
+
+</script>
+
+<div class="grid12 offset2">
+
+{% include "default/post_render.html" %}
+
+</div>
+
+<div class="PostLinks">
+<a href="{% url market_blog %}"><h4>Back To Blog</h4></a>
+
+
+{% endblock %}

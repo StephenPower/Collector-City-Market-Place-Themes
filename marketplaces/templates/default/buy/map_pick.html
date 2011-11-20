@@ -1,0 +1,68 @@
+{% extends "default/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<ul class="breadcrumb">
+ <li><a href="{% url market_home %}">{% trans "Home" %}</a><span class="divider">/</span></a></li>
+ <li><a href="{% url market_buy %}">{% trans "Buy" %}</a><span class="divider">/</span></a></li>
+ <li class="active">{% trans "Map Pick" %}</li>
+</ul>
+
+<h2>{% trans "Map Pick" %}</h2>
+
+<h3>Here You Can Find Our Shops!</h3>
+
+<div>
+	<script type="text/javascript">
+	google.load('maps', '2');
+	
+	$(document).ready(function () {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(40.91351257612757, -96.85546875), 4);
+        //map.setMapType(G_HYBRID_MAP);
+        
+        // Create our "tiny" marker icon
+    	// var icon = new GIcon(G_DEFAULT_ICON);
+    	// icon.image = "http://127.0.0.1:8000/media/img/small-coin-icon.png";
+
+		// Set up our GMarkerOptions object
+		// markerOptions = { icon: icon };
+        
+        var mapControl = new GMapTypeControl();
+		map.addControl(mapControl);
+		map.addControl(new GLargeMapControl());
+		
+        
+        {% for shop in shops %}
+        var point = new GLatLng({{ shop.geo_location.0 }}, {{ shop.geo_location.1 }});
+	    var marker = new GMarker(point);
+	    
+	    map.addOverlay(marker);
+	    
+	    GEvent.addListener(marker, 'click', function(point) {
+	    	var info = "<span style='font-size: 22px; font-weight: bold'>" + "{{ shop.preference.name_store.title }}" + "</span>"
+	    	info += "<div>Host: <a href='http://{{ shop.default_dns }}' target='blank'" + ">" + "{{ shop.default_dns }}" + "</a></div>";
+	    	info += "<div>City: " + "{{ shop.admin.get_profile.city }}, {{ shop.admin.get_profile.state }}" + "</div>";
+	    	info += "<div>Phone: " + "{{ shop.admin.get_profile.phone }}" + "</div>";
+	    	info += "<div>Member since: " + "{{ shop.date_time|date:"F j, Y" }}" + "</div>";
+	    	map.openInfoWindowHtml(point, info);
+     			});
+	    
+        {% endfor %}
+        
+      }
+    });
+	</script>
+
+	<div class="span12 offset2">
+		<div id="map" style="border: 4px solid gray; width: 845px; height: 500px"></div>
+	</div>
+	
+</div>
+
+
+</div>:q
+
+
+{% endblock %}

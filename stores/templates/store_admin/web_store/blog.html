@@ -1,0 +1,44 @@
+{% extends 'store_admin/web_store/base_web_store.html' %}
+{% load i18n %}
+
+{% block title_sub_menu %}Write post{% endblock %}
+
+{% block m_blog %}current_sub_menu{% endblock %}
+
+{% block menu_options %}
+	
+	<p><b>Blog Posts</b></p>
+	<ul class="posts_tree">
+	{% for post in posts %}
+		<li><a href="{% url post_edit post.id %}">{{ post.title }}</a></li>
+	{% empty %}
+		<li>No published posts</li>
+	{% endfor %}
+	</ul>	
+	
+	<form action="{% url post_publish_all %}" method="POST" id="draft_form">
+	<p><b>Draft Posts</b></p>
+	{% for post in drafts %}
+		<input type="checkbox" name="keys" value="{{ post.id }}"><a href="{% url post_edit post.id %}">{{ post.title }}</a><br>
+	{% empty %}
+		<p>No draft posts</p>
+	{% endfor %}
+		<input id="submit_btn" type="submit" value="Publish Drafts">	
+	</form>
+	
+{% endblock %}
+
+{% block toolbar %}
+	<a href="{% url post_add %}"><img src="{{ MEDIA_URL }}img/add.png" class="icon">{% trans "Write post" %}</a>
+{% endblock %}
+
+{% block main %}
+	
+	<div class="grid_12 box">
+	{% block main_blog %}
+
+	{% endblock %}
+	</div>
+	
+	<div class="clear"></div>
+{% endblock %}

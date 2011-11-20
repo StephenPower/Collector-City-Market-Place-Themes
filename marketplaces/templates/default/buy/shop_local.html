@@ -1,0 +1,80 @@
+{% extends "default/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<ul class="breadcrumb">
+ <li><a href="{% url market_home %}">{% trans "Home" %}</a><span class="divider"> / </span></li>
+ <li><a href="{% url market_buy %}">{% trans "Buy" %}</a><span class="divider"> / </span</li>
+ <li class="active">{% trans "Shop Local" %}</li>
+</ul>
+<div class="span12 offset2">
+<h2>{% trans "Shop Local" %}</h2>
+<p>Search for Dealers Near You</p>
+
+<form action="{% url buy_shop_local %}" method="POST" name="form" class="form-stacked">
+		<label>{% trans "City" %}</label>
+			<input type="text" name="city" value="{{ selected_city }}"/>
+			<label>{% trans "State" %}</label>
+			<select name="state">
+			{% for state in states %}
+	    		<option {% if state.1 == selected_state %}selected="selected"{% endif %}>{{ state.1 }}</option>
+			{% endfor %}
+			</select>
+		<label>Max Distance</label>
+		<select name="max_distance">
+			<option>20</option>
+			<option>75</option>
+			<option>100</option>
+			<option selected="selected">150</option>
+			<option>300</option>
+			<option>600</option>
+		</select></br></br>
+		<input type="submit" class="btn primary" alt="" value="{% trans 'Search' %}"/>
+	
+		{% comment %}
+		<label>Street</label><input type="text" name="street" value="1600 Pensylvannia"/>
+		<label>Country</label><input type="text" name="country" value="US"/>
+		<label>Metric</label><br/>
+		<select name="metric">
+			<option>Miles</option>
+			<option>Kilometers</option>
+		</select>
+		{% endcomment %}
+</form>
+
+{% if do_search %}
+<h3>{{ shops|length }} shop{{ shops|length|pluralize }} found</h3>
+
+<table class="zebra-striped">
+<thead>
+<tr>
+ <th>Shop</th>
+ <th>Shop Distance</th>
+ <th>URL</th>
+<tr>
+</thead>
+<tbody>
+{% for shop in shops %}
+<tr>
+ <td><a href="http://{{ shop.1.default_dns }}" target="_blank">
+		{% if shop.1.owner.get_profile.photo %}
+		<img class="item" alt="{{ shop.1.name }}" src="{{ shop.1.owner.get_profile.photo.url_128x135 }}" height="128" width="135"/>
+		{% else %}
+		<img class="item" alt="{{ shop.1.name }}" src="{{ MEDIA_URL }}img/no-photo-big.jpg" height="128" width="135"/>
+		{% endif %}
+		{{ shop.1.admin.get_full_name }}
+		{{ shop.1.default_dns }}
+		{{ shop.1.description|striptags }}
+	<td>{% trans "Distance" %} : {{ shop.0 }} {{ metric }}</td>
+	<td><a href="http://{{ shop.1.default_dns }}" target="_blank">{{shop.1.name|title }}</a></td>
+</tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+
+{% endif %}
+</div>
+</div>
+{% endblock %}

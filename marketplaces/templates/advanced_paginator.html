@@ -1,0 +1,25 @@
+{% load i18n %}
+{% if paged %}
+	{% if objects.has_previous %}
+	   <li> <a href="?page={{ objects.previous_page_number }}&amp;{{ form.get_qs }}&amp;do=search" class="prev">&lsaquo; {% trans "Previous" %} </a></li>
+	{% else %}
+	    <li class="disabled">&lsaquo; {% trans "Previous" %} </li>
+	{% endif %}
+	{% for page in pages %}
+	    {% if page %}
+	        {% ifequal page objects.number %}
+	            <li class="active"> {{ page }} </li>
+	        {% else %}
+	           <li><a href="?page={{ page }}&amp;{{ form.get_qs }}&amp;do=search" class="disabled">{{ page }} </a></li>
+	        {% endifequal %}
+	    {% else %}
+	        ...
+	    {% endif %}
+	{% endfor %}
+	{% if objects.has_next %}
+        <li><a href="?page={{ objects.next_page_number }}&amp;{{ form.get_qs }}&amp;do=search" class="next"> {% trans "Next" %} &rarr;</a></li>
+	{% else %}
+	   <li class="disabled next"> {% trans "Next" %} &rsaquo;</li>
+	{% endif %}
+{% endif %}
+

@@ -1,5 +1,0 @@
-{{ object.title }} {{ object.category }} 
-{% if object.subcategory %}
-{{ object.subcategory }}
-{% endif %}
-{{ object.description }}

@@ -1,0 +1,108 @@
+
+
+
+
+About Us:
+
+{{ about.title|title }} Django Market About Us
+{{ about.body }} Replace with the follow ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper eros in augue tempor eget tincidunt arcu sollicitudin. Aliquam facilisis lectus ac sem tempor eget egestas augue pulvinar. Aenean dignissim magna dictum dolor congue congue. In erat ante, condimentum et auctor vel, gravida id dui. Maecenas ut lacinia massa. Pellentesque in velit a sem ornare lacinia. Curabitur bibendum sollicitudin neque in vehicula. Aliquam mattis mi eu arcu porttitor cursus. Nulla facilisi.
+Sed bibendum gravida quam, sed luctus lorem pretium sed. Ut placerat magna a ipsum adipiscing vitae varius lectus hendrerit. Sed accumsan ipsum id lacus scelerisque vitae tristique tortor tempus.
+
+
+{{ map }} = Ignore This
+
+Auctions:
+{{ session_title }} = Django Market Auctions
+
+Remove the following and any text in between
+  {% if not lots %}
+    <h3>No lots in this session.</h3>
+  {% endif %}
+
+
+Copy the html in between the {% for lot in lots %}    {% endfor %} 10 times. Replace the following variables in the block. 
+
+{{lot.url}} = view_lot.html
+
+Replace the image test 
+"{% if lot.image.medium %}{{ lot.image.medium }}{% else %}{{ 'no_photo_medium.png'|asset_url }}{% endif%}" 
+
+with 
+
+"http://s3.amazonaws.com/market-media.greatcoins.com/img/no-photo-shop.png"
+
+
+ {% for lot in lots %}
+    <div class="product">
+      <div class="image">
+        <div class="align">
+          <div>
+            <a href="{{ lot.url }}" id="product"><img src="{% if lot.image.medium %}{{ lot.image.medium }}{% else %}{{ 'no_photo_medium.png'|asset_url }}{% endif%}" width=240px/></a>
+          </div>
+        </div>
+      </div>
+      <h3>{{ lot.price }}</h3>
+      <h4><a href="{{ lot.url }}">{{ lot.title }}</a></h4>
+    </div>    
+  {% endfor %}
+
+Replace the following block 
+ {% for category in shop_categories  %}
+            <li><a href="/search/?q={{ category.slug }}">{{ category.name }}</a></li>
+ {% endfor %}
+
+
+{{ sessions }} with the following code:
+<ul>
+<li><a href="auctions.html">Search All Auctions</a></li>
+		<li>
+		<p class="AuctionDate">February 23, 2013</p>
+		<em><a href="auctions.html">Auction 1</a></em>
+		</li>
+		<li>
+		<p class="AuctionDate">February 28, 2013</p>
+		<em><a href="auctions.html">Auction 2</a></em>
+		</li>
+		<li>
+		<p class="AuctionDate">March 28, 2013</p>
+		<em><a href="auctions.html">Auction 2</a></em>
+		</li>
+		<li>
+		<p class="AuctionDate">April 28, 2013</p>
+		<em><a href="auctions.html">Auction 2</a></em>
+		</li>
+</ul>
+
+{% for category in shop_categories  %}
+<li><a href="/search/?q={{ category.slug }}">{{ category.name }}</a></li>
+{% endfor %}
+
+with 
+
+<li><a href="search.html">Category 1</a></li>
+<li><a href="search.html">Category 2</a></li>
+<li><a href="search.html">Category 3</a></li>
+<li><a href="search.html">Category 4</a></li>
+<li><a href="search.html">Category 5</a></li>
+<li><a href="search.html">Category 6</a></li>
+
+{% for category in shop_subcategories  %}
+<li><a href="/search/?q={{ category.slug }}">{{ category.name }}</a></li>
+{% endfor %}
+
+with 
+
+<li><a href="search.html">SubCategory 1</a></li>
+<li><a href="search.html">SubCategory 2</a></li>
+<li><a href="search.html">SubCategory 3</a></li>
+<li><a href="search.html">SubCategory 4</a></li>
+<li><a href="search.html">SubCategory 5</a></li>
+<li><a href="search.html">SubCategory 6</a></li>
+
+Replace:
+<div class="pagination prefix_1">
+    {{ paginator  }}
+</div>  
+
+

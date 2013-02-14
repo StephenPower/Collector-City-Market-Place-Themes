@@ -1,0 +1,22 @@
+<ul id="category_list">
+    {% for category in shop_categories  %}
+        <li><a href="/search/?q={{ category.slug }}">{{ category.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<ul id="subcategory_list">
+    {% for category in shop_subcategories  %}
+        <li><a href="/search/?q={{ category.slug }}">{{ category.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<div class="grid_18 prefix_1 suffix_1" id="search">
+	{{ results }}
+
+        <div class="clear"></div>
+	
+	<div class="pagination prefix_1">
+            {{ paginator }}
+	</div>
+</div>
+<div class="clear"></div>

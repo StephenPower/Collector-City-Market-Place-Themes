@@ -1,0 +1,19 @@
+<div class="grid_8 prefix_4">
+    <div class="grid_8">
+
+        <form action="." method="POST" class="big_form">
+	        <fieldset class="register">
+               	{{ form_login }}
+		        <br/>
+		        <button type="submit" class="button_primary">Login</button>
+            </fieldset>
+        </form>
+        <div id="social_login">
+            <h3>Sign in with:</h3>
+            <a class="btn" href="{{ url_twitter_login }}"><span class="twitter-btn">Twitter</span></a>
+            <a class="btn" href="{{ url_facebook_login }}"><span class="facebook-btn">Facebook</span></a>
+            <a class="btn" href="{{ url_google_login }}"><span class="google-btn">Google</a>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Django Market Theme Designer - Django Market (html-name.html) Page</title>
+        <meta name="description" content=" " />
+
+
+        <link rel="stylesheet" href="../assets_url/css.css" />
+        <link rel="stylesheet" href="../assets_url/960_20.css" />
+        <link rel="stylesheet" href="../assets_url/buttons.css" />
+
+
+        
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js" type="text/javascript"></script> 
+        <script>
+			$(function(){
+			  var path = location.pathname.substring(1)
+			  page = path.split('/')[0];
+			  if (page != 'pages'){
+				if (page == '') 
+						    page = 'home';
+				$('.menu a[href$="/' + page + '/"]').attr('class', 'current');
+			}else{
+			  page = path.split('/')[1];
+				$('.menu a[href$="/pages/' + page + '/"]').attr('class', 'current');
+			}
+			});
+	    </script>
+    </head>
+    
+    <body>
+        <div class="container_20">
+
+
+            <div class="header grid_20 alpha omega">
+                <div class="grid_4 prefix_1 alpha omega home_title">
+                  <h2>Django Market Theme Designer  </h2>
+                </div>
+
+                    <div class="grid_3 alpha omega" id="my_shopping_count">
+                    {% if user_is_logged %}
+                    <div id="go_myshopping">
+                        <p>
+                          <a href="my_shopping.html">Shopping Cart</a> ({{ total_cart_items  }})&nbsp;&nbsp; 
+                          <a href="my_orders.html">My Orders</a>
+                        </p>
+                    </div>
+                    {% endif %}          
+              </div>
+
+              <div class="menu grid_15 alpha omega">
+                        <UL>
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="menu-primary"></A><A HREF="home.html">Home</A>
+		</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="for_sale.html">For Sale</A>
+		</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="auctions.html">Auctions</A>
+		</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="blog.html">Blog</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="about_us.html">About Us</A>
+		</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="login.html">Login</A> 
+	</P>
+	<LI><P><A HREF="register.html">Register</A> 
+	</P>
+</UL>
+              </div>
+              <div class="clear"></div>
+  
+              <div class="search grid_20 alpha omega">
+                        <form action="search.html" method="get" name="form">
+                        <input type="text" value="search.." name="q"/>
+                            <button type="submit" class="small awesome">Go</button>
+                        </form>
+              </div>
+
+              <div class="clear"></div>
+  
+            </div>
+            <div class="clear"></div>
+
+            <!-- FLASH MESSAGE  -->
+            <div id="flash_message">
+                
+            </div>
+            <div class="clear"></div>
+
+
+            <!-- CONTENT  -->
+            <div class="body_container">
+                <h2>Please confirm your payment!</h2>
+<div class="grid_ 18 prefix_1 suffix_1">
+    <p>Total amount: {{ total_amount }}</p>
+    <form action="." method="post">
+            
+            {{ form_paypal_confirm }}
+	
+	    <a href="{{ cancel_url }}">Cancel</a>
+	    or
+	    <button class="awesome" type="submit" name="action" value="confirm">Confirm</button>
+    </form>
+</div>
+
+
+            </div>
+     </div>
+     <div class="clear"></div>
+
+            <!-- FOOTER -->            
+            <div class="footer">
+                <div class="container_20">
+                  <div class="grid_18 prefix_1 suffix_1" id="title">
+                    <div class="grid_6 alpha omega">
+                      <h3>About Us</h3>
+                    </div>
+                    <div class="grid_6 alpha omega">
+                      <h3>From Our Blog</h3>
+                    </div>
+                    <div class="grid_6 alpha omega">
+                      <h3>Quick Navigation</h3>
+                    </div>
+                  </div>
+                  <div class="clear"></div>
+
+                  <div class="grid_18 prefix_1 suffix_1">
+                    <div class="grid_5 suffix_1 alpha omega">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a blandit lectus. Praesent cras amet.</p>
+                      <a href="/about_us/">Read more</a>
+                    </div>
+
+                    <div class="grid_5 suffix_1 alpha omega">
+                      <h5><a href="blog.html">Django Market Blog Post</a></h5>
+                      <h5>Posted on 2013-02-11 16:49</h5>
+                      <p>{{ last_post.body|truncate(100) }}</p>
+                    </div>
+    
+                    <div class="grid_6 alpha omega">
+                      
+<P><A HREF="home.html">Home</A></P>
+<P><A HREF="auctions.html">Auctions</A></P>
+<P><A HREF="for_sale.html">For Sale</A></P>
+<P><A HREF="login.html">Login</A></P>
+<P><A HREF="register.html">Register</A></P>
+
+                    </div>
+                  </div>
+                  <div class="clear"></div>   
+                </div>
+
+        </div>
+
+        {{ footer }}
+
+    </body>
+</html>

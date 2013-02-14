@@ -1,0 +1,18 @@
+<div class="grid_10 prefix_1" id="home">
+        <h1>{{ home.title }}</h1>
+	<p>{{ home.body }}</p><br/><br/>
+
+        <a href="{{ url_refund  }}">Refund</a>
+        <a href="{{ url_privacy_policy  }}">Privacy Policy</a>
+        <a href="{{ url_terms_of_service  }}">Terms of Service</a>
+        
+        {{ mailing_list }}
+</div>
+<div class="grid_8 prefix_1">
+	{% if home.image %}
+		<img src="{{ home.image.url }}" width=320px/>
+        <img src="{{ 'gold-1.jpg'|asset_url }}"/>
+	{% endif %}
+</div>
+
+<div class="clear"></div>

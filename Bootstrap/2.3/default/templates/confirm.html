@@ -1,0 +1,203 @@
+<div class="span12" id="shipping">
+<h2>Step 2 of 2</h2>
+<h3 class="page-header">Complete Shipping Information</h3>
+<div class="progress progress-striped active span6">
+ <div class="bar" style="width: 66%;"></div> 
+</div>
+</div>
+{% if cart.items %}
+ <h3 class="page-header">Payment And Order Summary</h3>
+<div class="span5">
+      <table class="table">
+      <thead>
+        <tr>
+        <th></th>
+        </tr>
+        </thead>
+<tbody>
+         {% if payment_buttons %}
+         <tr>
+            <th>Select Payment Method</th>
+         </tr> 
+     {% for payment_button in payment_buttons %}
+     <tr class="success">
+     <td>{{ payment_button|safe }}</td>
+     </tr> 
+        {% endfor %}
+<script>
+  var input = $(":button").addClass("btn btn-primary");
+</script>
+
+        {% else %}
+<tr>
+            <td>
+               We don't have online payments available at this moment. Please, contact with {{ admin_email }} to finish your purchase.
+            </td>
+         </tr>
+{% endif %}
+  </tbody>
+   </table class="table small">
+   <!-- If Cart Items Else -->
+   {% else %}
+   <table class="table">
+      <tbody>
+         <theader>
+            <tr>
+               <th>Your Cart Is Empty</th>
+         </theader>
+      <tbody>
+         <tr>
+            <td>Yes, it is...</td>
+         </tr>
+      </tbody>
+   </table>
+   {% endif %} 
+</div>
+<div class="span6">
+<table class="table-condensed" >
+      <theader>
+         <tr>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>SubTotal</th>
+         </tr>
+      </theader>
+      {% for item in cart.cart_items %}
+      <tr>
+         <td class="small"><img src="{% if item.image.small %}{{ item.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" width="50px" />
+         </td>
+        <td class="small"> {{ item.title }}</td>
+         <td class="small"> {{ item.price }}</td>
+         <td class="small">{{ item.qty }} </td>
+         <td class="small">{{ item.sub_total }} </td>
+      </tr>
+      {% endfor %}
+   </table>
+   <table class="table" id="Confirm-Summary">
+      <theader>
+         <tr>
+            <th class="Left-Column">Shipping</th>
+            <th></th>
+         </tr>
+      </theader>
+      <tr>
+         <td class="Left-Column small">Ship To:</td>
+         <td class="small">{{ cart.shippingdata.street_address }} </td>
+      </tr>
+      <tr>
+         <td class="Left-Column small">Sub Totals</td>
+         <td class="text-important small"> {{ cart.total }}</td>
+      </tr>
+      <tr>
+         
+            <td class="Left-Column small">Shipping Address</td>
+            </br>
+            <td class="small"> <address>
+               {{ cart.shippingdata.street_address }} <br>
+               {{ cart.shippingdata.city }}<br>
+               {{ cart.shippingdata.state }}<br>
+               {{ cart.shippingdata.zip }}<br>
+</address>
+            </td>
+        
+      </tr>
+      <tr>
+         <td class="Left-Column small">Taxes</td>
+         <td class="small">{{ cart.taxes }}</td>
+      </tr>
+      <tr>
+         <td class="Left-Column small">Country</td>
+         <td class="small"> {{ cart.shippingdata.country }}</td>
+      </tr>
+      <tr>
+         <td class="Left-Column small">Shipping Charge: </td>
+         <td class="small">{{ cart.shipping_charge }} </td>
+      </tr>
+      <tr>
+         <td class="Left-Column small">Total</td>
+         <td class="text-error small "><strong> {{ cart.total_with_taxes }} </strong></td>
+      </tr>
+      </tbody> 
+   </table>
+</div>
+<!-- 
+   {#
+   Page: confirm.html
+   Purpose: main confirmation page for ordering from a Django Market Shop
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes:
+   
+   Variables on This Page:
+   
+   item
+   	Description: Basic Variable for the items sold in shopping cart. All for sale items share the item variable
+   
+   	.qty
+   		Description: Amount of the items purchased
+   		
+   	.price
+   		Description: Price of the item 
+   		
+   	.title
+   		Description: Blog Title as entered by the shop owner
+   	
+   	.sub_total
+   		Description: (.price)(qty)=.subtotal
+   		
+   cart
+   	.items
+   		Description: number of total items in the logged in users cart
+   	
+   	.shippingdata.street_address:
+   		Description: Street Address for shipping data 
+   		
+   	.shippingdata.city
+   		Description: City for shipping data 
+   	
+   	.shippingdata.state 
+   		Description: State for shipping data 
+   	
+   	.shippingdata.zip 
+   		Description: US ZIP for shipping data 
+   	
+   	.taxes 
+   		Description: State Taxes as entered in Shop Admin Preferences Taxes
+   	
+   	.shippingdata.country 
+   		Description: Ship to Country
+   	
+   	.shipping_charge 
+   		Description: Shipping Charge as deteremined by Shop Admin Preferences Shipping. If nothing is entered, shipping resolves to zero (0) dollars.
+   	
+   	.total_with_taxes
+   		Description: Total with taxes, some states tax shipping some don't
+   
+   {% if cart.items %}
+   	Description: Checks if the cart.items > 0
+   
+   {% if payment_buttons %}:
+   	Description: Does the shop have payments set up? This checks that payment_buttons > 0
+   
+   {{ admin_email }}
+   	Description: Shop Owners Email address per the Django Market Shop admin perferences / general tab
+   
+   Filters on this Page
+   
+   |safe
+   	Description: Jinja2 filter to escape HTML characters. The shop admin use tinymc as the text input, allow HTML input, this ensures the template doesn't stip those out, which it will by default. 
+   	See Jinja2 Documentation for additional information on html escaping. 
+   
+   Variables to iterate over
+   
+   cart.cart_items
+   	Description: Users Cart Variable
+   
+   payment_buttons:
+   	Description: Payment Options as Setup in Shop Admin Preferences / Payments
+   
+   Author: Stephen Power
+   #}
+   -->

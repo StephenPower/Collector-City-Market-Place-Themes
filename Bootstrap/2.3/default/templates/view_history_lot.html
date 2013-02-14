@@ -1,0 +1,90 @@
+<!-- Lot History Table -->
+<div class="span12">
+<div class="span4 offset1">
+   <p><strong>Bidders: {{ lot.count_bidders }}</strong></p>
+      <p><strong>Bids: {{ lot.count_bids }}</strong></p>
+      <p><strong>Time Left: {{ lot.time_left_long }}</strong></p>
+      <img src="{% if lot.image.original %}{{ lot.image.original }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" width="80px" />
+</div>
+    <div class="well span5" id="ViewHistoryLot">
+      <h4>Lot: {{ lot.title }}</h4>
+      <p>{{ description }}</p>
+</div>
+</div>
+<h3><a class="btn-primary btn-large" href="{{ lot.dir_back }}">Back to {{ lot.title }}</a></h3>
+<div class="span8 offset2">
+    <h4>Bidding History</h4>
+      <table class="table">
+         <thead>
+            <tr>
+               <th>Bidder</th>
+               <th>Bid amount</th>
+               <th>Bid time</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for bid in history %}
+            <tr>
+               <td>{{ bid.bidder_username }}</td>
+               <td>{{ bid.bid_amount }}</td>
+               <td>{{ bid.bid_time }}</td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+ </div>
+<!-- Back To Lot -->
+
+<!-- 
+   {#
+   Page: view_history_lot.html
+   Purpose: Allows a user to see detailed bidding information, must be logged in.
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes:
+   
+   Variables on This Page:
+   
+   {{ Descripton }}
+   	Description: Lot Description
+   
+   
+   lot
+   	Description: Basic Variable for auctions. 
+   	
+   	.title
+   		Description: Lot Title as entered by the shop owner
+   	
+   	.count_bids
+   		Description: Number of Bids on a lot. Used to check lot bids and form if then tests
+   	
+   	.count_bidders
+   		Description: Number of Bidders on a lot. Used to check lot bids and form if then tests
+   
+   	.dir_back
+   		Description: URL back to lot	
+   
+   bid
+   	Description: Variable that describes the one or many bids on a lot
+   	
+   	.bidder_username
+   		Description: Bidder User Name 
+   	.bid_amount
+   		Description: Bid Amount
+   	.bid_time
+   		Description: Time bid was logged
+   Filters on this Page
+   
+   
+   |title
+   	Description: Jinja2 filter to Title Case a string
+   	See Jinja2 Documentation for additional information on html escaping. 
+   
+   
+   Variables to iterate over
+   
+   {% for bid in history %}
+   
+   Author: Stephen Power
+   #}
+   -->

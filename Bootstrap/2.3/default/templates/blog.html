@@ -1,0 +1,78 @@
+<div class="span12">
+  <h2>Blog</h2>
+</div>
+
+<div class="span7" id="Blog-Posts">
+   {% for post in posts %}
+   <h3>{{ post.title }} </h3>
+   <p class="small">{{ post.date_time }}</p>
+   <p>{{ post.body|safe|truncate(400) }}</p>
+   <div class="pull-right blog-post"><a href="{{ post.url }}">Continue reading "{{post.title}}" >></a></div>   </br>
+   {% endfor %}
+</div>
+<div class="span4">
+<ul class="well unstyled">
+   <li class="side-header">About Our Blog</li>
+   <li>{{ lipsum(5, False, 25, 35) }}</li>
+   <li class="side-header">Latest Posts</li>
+   {% for post in last_posts %}
+   <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+   {% endfor %}
+ </ul>
+</div>
+<div class="span12">
+   <div class="pagination">
+      {{ paginator }}
+   </div>
+</div>
+<!-- 
+   {#
+   Page: blog.html
+   Purpose: main blog page for the Django Market Shop
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   
+   Variables on This Page:
+   
+   post
+    Description: Basic Variable for the blog post viewed.
+   
+    .date_time
+      Description: Date Time for the shop. See Jinja2 Docs on how to change format for locality
+      
+    .post.body
+      Description: Post Body Text as entered in the shop admin for the blog entry
+   
+    .title
+      Description: Blog Title as entered by the shop owner
+    
+   page_title
+    Description: title for the current page
+   
+   {{ paginator }}:
+    Description: pagination variable, when there are more than 5 posts, pagination occurs. 
+   
+   Filters on this Page
+   |title
+    Description: Jinja2 filter to ensure Title Case for the string {{ shop_name }}
+    See Jinja2 Documentation for additional String Filters Available
+   
+   |truncate(xx)
+    Description: Jinja2 filter to ensure the string is truncated at xx length. 
+    See Jinja2 Documentation for additional String Filters Available
+   
+   |safe
+    Description: Jinja2 filter to escape HTML characters. The shop admin use tinymc as the text input, allow HTML input, this ensures the template doesn't stip those out, which it will by default. 
+    See Jinja2 Documentation for additional information on html escaping. 
+   
+   
+   Variable to iterate over
+   last_posts
+    Description: This is a custom template tag that grabs the last five posts sorted by -date
+   
+   posts
+    Description: This is the object variable that is passed to the template when requested. All the blog posts are passed and if the posts > 5 then the pagination variable is passed as well. 
+    
+   Author: Stephen Power
+   #}
+   -->

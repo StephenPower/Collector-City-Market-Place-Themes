@@ -1,0 +1,122 @@
+<div class="span12">
+<h2>{{ home.title }}</h2>
+</div>
+<div class="carousel slide span4" id="myCarousel">
+   <!-- Carousel items -->
+   <div class="carousel-inner">
+      {% for item in new_items %}
+      {% if loop.first %}
+      <div class="active item">
+         <a href="{{item.url}}">
+            <img src="{% if item.image.medium %}{{ item.image.medium }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" alt="{{ item.title }}" />
+            <div class="carousel-caption">
+               <h4> {{ item.title}} </h4>
+               <p>{{ item.description|truncate(160) }}</p>
+            </div>
+         </a>
+      </div>
+      {% else %}
+      <div class="item">
+         <a href="{{item.url}}">
+            <img src="{% if item.image.medium %}{{ item.image.medium }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" alt="{{ item.title }}" />
+            <div class="carousel-caption">
+               <h4> {{ item.title}} </h4>
+               <p>{{ item.description|truncate(60) }}</p>
+            </div>
+         </a>
+      </div>
+      {% endif %}
+      {% endfor %}
+   </div>
+   <!-- Carousel nav -->
+   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+<div class="span3">
+   <ul class="well unstyled">
+      <li class="side-header">{{ home.title }}</li>
+      <li> {{ home.body }}</li>
+      <li class="side-header">Browse</li>
+      <li><a href="/search/?=">Item's For Sale</a></li>
+      <li class="side-header">Sign Up For Our Newsletter</li>
+      <li>
+         <div class="form-stacked " id="EmailSignUp">
+            {{ mailing_list }}
+          </div>
+      </li>
+   </ul>
+</div>
+<div class="span3">
+   <ul class="well unstyled">
+      <li class="side-header">Additional Information</li>
+      <li> {{ home.body }}</li>
+      <li class="side-header">Blog</li>
+      <li><a href="/blogs/?=">Latest Blog Post</a></li>
+      <li class="side-header">Sign Up For Our Newsletter</li>
+      <li>
+         <div class="form-stacked " id="EmailSignUp">
+            {{ mailing_list }}
+          </div>
+      </li>
+   </ul>
+</div>
+<div class="span8">
+   <hr />
+   <h3>Sample Colors For this Theme</h3>
+   <div class="label-important">
+      <p>This is Important Color</p>
+   </div>
+   <div class="label-warning">
+      <p>This is Warning Color</p>
+   </div>
+   <div class="label-warning">
+      <p>This is Success Color</p>
+   </div>
+   <div class="label-info">
+      <p>This is info Color</p>
+   </div>
+   <div class="label-inverse">
+      <p>This is inverse Color</p>
+   </div>
+   <a href="{{ url_refund }}" title="Refund Policy">Refund Policy</a>
+</div>
+
+
+<!-- 
+   {#
+   Page: home.html
+   Purpose: Shops home page 
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes: 
+    Please note, the HTML constrains the home.img size, you may want to alter
+   
+   Variables on This Page:
+   
+   home
+    Description: Basic Variable for the home page 
+      
+    .body
+      Description: text as entered in shop admin
+      
+    .title
+      Description: Item title as entered by the shop owner
+    
+    .image
+      Description: Optional: Shop admin can enter home page image
+    
+    .img.url
+      Description: url for the home image
+   
+   {{ mailing_list }}
+    Description: Allows users to sign up for shop's mailing list
+   
+   Filters on this Page
+   None
+   
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}.....
+   -->

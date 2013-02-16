@@ -1,0 +1,35 @@
+<div id="PayPalPaymentConfirm">
+   <div class="span3">
+      <h2>Please confirm your payment!</h2>
+   </div>
+   <div class="span5">
+      <p>Total amount: {{ total_amount }}</p>
+      <form action="." method="post">
+         {{ form_paypal_confirm }}
+         <a href="{{ cancel_url }}">Cancel</a>
+         or
+         <button class="btn-primary" type="submit" name="action" value="confirm">Confirm</button>
+      </form>
+   </div>
+</div>
+<!-- 
+{#
+Page: payment_paypal_confirm.html
+Purpose: Page is displayed before a user confirms paypal information / payment
+Status: Required
+This Template is Passed to the layout.html as {{ content }}
+CSS Notes: 
+Variables on This Page:
+{{ total_amount }}
+Description: Total amount to be charged to Paypal account
+{{ form_paypal_confirm }}
+Description: Form that is passed to the template, must not be altered in any way.
+{{ cancel_url }}
+Description: URL to properly cancel a PayPal Payment
+Filters on this Page
+None
+Variable to iterate over
+None
+Author: Stephen Power
+#}
+-->

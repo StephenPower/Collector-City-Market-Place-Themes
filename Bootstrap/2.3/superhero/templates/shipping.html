@@ -1,0 +1,42 @@
+<div class="span12" id="shipping">
+<h2>Step 1 of 2</h2> 
+<h3 class="page-header">Complete Shipping Information</h3>
+<div class="progress progress-striped active span6">
+ <div class="bar" style="width: 33%;"></div> 
+
+</div>
+</div>
+
+   <div class="span4 offset3 well">
+      <form action="." method="POST" class="form">
+         {{ form_shipping }}
+             <button class="btn btn-primary " type="submit">Next Step</button> 
+     </form>
+   </div>
+
+<!-- 
+   {#
+   Page: shipping.html
+   Purpose: This page is part of the checkout process. By design, Django Market does not hold user's shipping data, they must enter it every time. 
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes: 
+   		
+   Variables on This Page:
+   
+    {{ form_shipping }}
+   	Description: Shipping form,  Must be displayed as is, no alterations
+   
+   {{ paginator }}
+   	Description: If the search results are > 20 , this page will paginated, this variable must be included. 
+   	
+   Filters on this Page
+   |length
+   	Description: Jinga filter that reports the length of the results set. This is used on this page to query for no results, so an alternative can be displayed. 
+   	
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}
+   -->

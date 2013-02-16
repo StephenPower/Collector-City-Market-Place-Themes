@@ -1,0 +1,85 @@
+<div class="span12">
+  <h2>Auctions</h2>
+</div>
+<ul class="well span3 unstyled">
+  <li class="side-header">Auction Sessions</li>
+  {{ sessions }}
+</ul>
+{% if not lots %}
+<div class="span4">
+  <h3 class="title">No lots in this session.</h3>
+</div>
+{% else %}
+<div class="span4">
+  <table class="table table-condensed" id="AuctionResult">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    {% for lot in lots %}
+    <tr>
+      <td class="span4"> <a href="{{lot.url}}">
+        <img src="{% if lot.image.small %}{{ lot.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" alt="{{ lot.title }}" />
+        </a>
+      </td>
+      <td>
+        <h5>{{lot.title|title}}</h5>
+        <h6>{{lot.price}}</h6>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  {% endfor %}
+</div>
+{% endif %}
+<div class="row-fluid">
+  <div class="pagination">
+    {{ paginator }}
+  </div>
+</div>
+
+<!-- 
+    {#
+    Page: auctions.html
+    Purpose: Display List of Auction Sessions & Lots
+    Status: Required. 
+    This Template is Passed to the layout.html as {{ content }}
+    
+    Variables on This Page:
+    
+    session_title
+      Description: Session Title for the Auctions
+      
+    lot
+      Description: Basic Variable for the lot viewed.
+    
+      .url
+        Description: URL for the lot at that shop
+    
+      .image.medium
+        Description: medium sized image for the shop.
+        Options: original
+    
+      .title
+        Description: Lot title as entered by the shop owner
+    
+      .price
+        Description: price entered by the shop owner i.e current bid
+      
+    {% if not lots %}
+        Description: checks if there are any items for auction
+    
+    Filters on this Page
+      None
+      Additional Reference: See Jinja2 documentation for string filters available
+      
+    Variable to iterate over
+    
+    lots
+      Description: object passes to template with the lots, if any available
+    
+    Author: Stephen Power
+    #}
+    -->

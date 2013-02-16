@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Django Market Theme Designer - Django Market my_orders.html</title>
+        <meta name="description" content=" " />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../assets_url/bootstrap.css">               
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/bootstrap.min.gzip.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/modernizr-2.6.2.min.gzip.js"></script>
+
+        
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse">
+                       <ul class="nav">
+<li><a href="home.html">Home</a></li>
+<li><a href="for_sale.html">For Sale</a></li>
+<li><a href="auctions.html">Auctions</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="about_us.html">About Us</a></li>
+    <li><a href="login.html" id="">Login</a></li>
+<li><a href="register.html">Register</a></li>
+</ul>
+
+
+                       <form action="search.html" method="get" class="navbar-search span3">
+                          <input type="text" class="search-query span2" placeholder=" Search " name="q" id="q" data-provide="typeahead" data-items="4" data-source="[]" />
+                       </form>
+                       
+                       <p class="navbar-text pull-right">
+                          <a class="text-error" href="my_shopping.html">Cart 10</a> &nbsp;<a class="text-error" href="my_orders.html">Orders</a>
+                       </p>
+                       
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <!-- FLASH MESSAGE  -->
+            <!-- Page Content is added here from the other pages-->
+            <div class="row-fluid" id="content">
+               <div id="alert alert-block fade in">
+                  
+               </div>
+               <!-- orders -->
+
+<div class="span5 offset1">
+<H2>Order History</H2>
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+   <li class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
+   
+   <li><a href="#{{ sell.id }}" data-toggle="tab">OrderID:{{ sell.id }}</a></li>
+   
+</ul>
+
+<div id="my-tab-content" class="tab-content">
+   <div class="tab-pane active" id="summary">
+      <p>Please use the navigation on the left to review your orders.</p>
+   </div>
+   
+   <div class="tab-pane" id="{{ sell.id }}">
+      <div class="OrderGroup">
+         <h5 class="BorderOnTop">Order ID: {{ sell.id }}</h5>
+         <h5> Order Total: {{ sell.total }}</h5>
+         <p>Date: {{ sell.date_time }}</p>
+        <h4>Order Details</h4>
+                <table class="table table-condensed">
+                  <thead>
+                     <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     
+                     <tr>
+                        <td>
+                           <a href="{{ item_sell.url }}"><img src="../assets_url/item_sell.image.small" width="30Px" class="OrderTitle" alt=" item_sell.title " /></a>
+                        </td>
+                        <td><a class="OrderTitle" href="{{ item_sell.url }}">{{ item_sell.title|title }}</a>
+                        </td>
+                        <td><a href="{{ item_sell.url }}">Price: {{ item_sell.price }}</a></td>
+                     </tr>
+                     
+                  </tbody>
+               </table>
+               <h4>Payment History</h4>
+               <table class="table table-condensed"
+                  <thead>
+                     <tr>
+                   
+                        <th>Status</th>
+                         <th>Date</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     
+                     <tr>
+                    
+                     <td class="alert alert-info"> Payment Received: </td>
+                     <td class="alert alert-info">{{ payment.date_time }} </td>
+                   
+                  
+                     <td class="alert alert-success">   Payment Processed: </td>
+                     <td class="alert alert-success"> {{ payment.date_time }} </td>
+                   
+                     </tr>
+                     
+                  </tbody>
+               </table>
+                <h4>Shipping History</h4>
+               <table class="table table-condensed"> 
+                  <thead>
+                     <tr>
+                         <th>Status</th>
+                         <th>Date</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+      <tr>
+                     
+                     
+                  
+                     <td class="alert alert-info">  Order Received: </td>
+                     <td class="alert alert-info">{{ shipping.date_time }}  </td>
+                   
+                  
+                     <td class="alert">  Order Processed: </td>
+                 <td class="alert">{{ shipping.date_time }}  </td>
+                   
+                  
+                     <td class="alert alert-success">  Order Shipped: </td>
+                   <td class="alert alert-success">{{ shipping.date_time }}  </td>
+                   
+            
+                      
+                     </tr>
+                     
+                     
+                  </tbody>
+               </table>
+
+
+      </div><!-- End Order Group    -->
+   </div>
+   
+</div>
+</div>
+</div>
+
+<h2>No Orders</h2>
+
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+<!--  bids -->
+
+<div class="span5">
+<h2>My Bids</h2>
+
+<div class="row-fluid" id="LotHistory">
+   <div class="span2">
+      <a href="{{ lot.url }}"><img src="" width="100px" alt="{{ lot.title }}" /></a>
+   </div>
+   <div class="span3">
+      <h3><a href="{{ lot.url }}">{{ lot.title|title }}</a></h3>
+      <p>
+         
+         
+         Starting bid
+         
+         Current Bid
+         
+         
+         Final Bid
+         
+         : {{ lot.current_bid }}
+      </p>
+      <p>Time Left: {{ lot.time_left }}</p>
+   </div>
+   <h5>Bidding History</h5>
+   <div class="span6">
+      <table class="table small">
+         <thead>
+            <tr>
+               <th>Bidder</th>
+               <th>Bid amount</th>
+               <th>Bid time</th>
+            </tr>
+         </thead>
+         <tbody>
+            
+            <tr>
+               <th>{{ bid.bidder_username }}</th>
+               <th>{{ bid.bid_amount }}</th>
+               <th>{{ bid.bid_time }}</th>
+            </tr>
+            
+         </tbody>
+      </table>
+   </div>
+</div>
+<!-- End of For lot in bids -->
+</div>
+<!-- If there are no bids, you end of here -->
+<h2>No Bids</h2>
+<!-- End of If Bids-->
+
+
+<!-- 
+   {#
+   Page: my_orders.html
+   Purpose: Shows Bidding and Order History for the logged in user
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes:
+   
+   Variables on This Page:
+   
+   {{ bids }}
+   	Description: Checks to see if a user has any current or past bids. If not, No Bids is displayed.
+   
+   
+   lot
+   	Description: Basic Variable for auctions. 
+   
+   	.qty
+   		Description: Amount of the items purchased
+   		
+   	.current_bid
+   		Description: Amount, in USD, of the current bid.
+   		
+   	.title
+   		Description: Lot Title as entered by the shop owner
+   	
+   	.count_bids
+   		Description: Number of Bids on a lot. Used to check lot bids and form if then tests
+   	
+   	.is_active
+   		Description: Lot Status. Active or closed. Used to test if the lot is active or closed for bidding
+   	.url
+   		Description: Lot Url
+   	
+   	.img.original
+   		Description: Lot Original image, This can be huge, Django Shop does not limit image size 
+   
+   	.time_left
+   		Description: If the lot is active, the amount of time left to bid.
+   			
+   	.history
+   		Description: itterable variable that returns bid information: bidder_username, bid_amount, bid_time
+   
+   bid
+   	Description: Variable that describes the one or many bids on a lot
+   	
+   	.bidder_username
+   		Description: Bidder User Name 
+   	.bid_amount
+   		Description: Bid Amount
+   	.bid_time
+   		Description: Time bid was logged
+   
+   Sell
+   	Description: Items sold to user
+   	
+   	.id
+   		Description: Unique ID for the Items sold 
+   	
+   	.date_time
+   		Description: Date / Time Item was sold
+   	
+   	.total
+   		Description: Total value of the sale
+   
+   	.item_set
+   		Description: The set of items sold to the users. Used with Item_sell to describe the sold items
+   
+   	.shipping_history
+   		Description: Shipping History of the item, it can go through three states: Pending, Dispatched, Fufilled
+   
+   item_sell
+   
+   	.url
+   		Description: URL of the item sold. 
+   	
+   	.image	
+   		Description: Image url of the item
+   	
+   	.title
+   		Description: Title of the Item Sold
+   	
+   	.price
+   		Description: Price of the Item Sold
+   
+   Payment
+   	Description: Payment Variable for items sold
+   	
+   	.date_time
+   		Description: Payment Date/ Time for Payment Processing
+   	
+   	.state
+   		Description: Payments are submitted and go through three states: Pending, Paid and Failed
+   		
+   
+   	Description: Users orders, can be used to check if something has been sold and to iterate if sold items exist in order history.
+   
+   asset_url
+   	Description: URL for all the files (CSS, JS etc) in your asset folder.
+   
+   Filters on this Page
+   
+   
+   |title
+   	Description: Jinja2 filter to Title Case a string
+   	See Jinja2 Documentation for additional information on html escaping. 
+   
+   |sort
+   	Description: Jinja2 filter to Sort an iterable. From Jinja2 Documentation:
+   	
+   		Per default it sorts ascending, if you pass it true as first argument it will reverse the sorting.
+   		If the iterable is made of strings the third parameter can be used to control the case sensitiveness of the comparison which is disabled by default.	
+   		
+   	See Jinja2 Documentation for additional information on html escaping. 
+   
+   Variables to iterate over
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   Author: Stephen Power
+   #}
+   -->
+            </div>
+            <!-- FOOTER --> 
+            <hr>
+         <footer>
+               {{ footer }} 
+               <div id="label-info">
+                  <div class="span3">
+                     <h5>About Us</h5>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a blandit lectus. Praesent cras amet.</p>
+                     <a href="/about_us/">Read more</a>
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <h5>Quick Navigation</h5>
+                     
+<P><A HREF="home.html">Home</A></P>
+<P><A HREF="auctions.html">Auctions</A></P>
+<P><A HREF="for_sale.html">For Sale</A></P>
+<P><A HREF="login.html">Login</A></P>
+<P><A HREF="register.html">Register</A></P>
+
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     <form action="search.html" method="get">
+                        <input type="text" `placeholder="Search "  name="q" id="s" class="span2"/>
+                     </form>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <hr />
+                     <h5>Website Policies</h5>
+                     <ul class="unstyled">
+                        <li><a href="privacy_policies.html">Privacy Policy</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                        <li><a href="terms_of_service.html">Terms of Service Policy</a></li>
+                     </ul>
+                  </div>
+                  <div class="span2">
+                     <h5>Latest Blog Posts</h5>
+                     <p><a href="blog.html">Django Market Blog Post</a></p>
+                     <p>Posted on 2013-02-14 19:22</p>
+                     <p>{{ last_post.body|truncate(100) }}</p>
+                  </div>
+               </div>
+            </footer>
+        </div> <!-- /container -->
+    </body>
+</html>

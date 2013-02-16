@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Django Market Theme Designer - Django Market view_item.html</title>
+        <meta name="description" content=" " />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../assets_url/bootstrap.css">               
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/bootstrap.min.gzip.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/modernizr-2.6.2.min.gzip.js"></script>
+
+        
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse">
+                       <ul class="nav">
+<li><a href="home.html">Home</a></li>
+<li><a href="for_sale.html">For Sale</a></li>
+<li><a href="auctions.html">Auctions</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="about_us.html">About Us</a></li>
+    <li><a href="login.html" id="">Login</a></li>
+<li><a href="register.html">Register</a></li>
+</ul>
+
+
+                       <form action="search.html" method="get" class="navbar-search span3">
+                          <input type="text" class="search-query span2" placeholder=" Search " name="q" id="q" data-provide="typeahead" data-items="4" data-source="[]" />
+                       </form>
+                       
+                       <p class="navbar-text pull-right">
+                          <a class="text-error" href="my_shopping.html">Cart 10</a> &nbsp;<a class="text-error" href="my_orders.html">Orders</a>
+                       </p>
+                       
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <!-- FLASH MESSAGE  -->
+            <!-- Page Content is added here from the other pages-->
+            <div class="row-fluid" id="content">
+               <div id="alert alert-block fade in">
+                  
+               </div>
+               <div calss="span12">
+   <h2>{{item.title|title}}</h2>
+   <p class="page-header&quot;">{{item.description|truncate(100)}}</p>
+</div>
+<div class="span12">
+   <div id="myCarousel" class="carousel span5 offset1">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+         
+         
+         <div class="item active">
+            <a href="{{ img.original }}" target="_blank"><img " /></a>
+            <div class="carousel-caption">
+               <p>{{ item.title|title }}</p>
+               <p class="small">Click On Image to View Original Size</p>
+            </div>
+         </div>
+         
+         <div class="item">
+            <a href="{{ img.original }}" target="_blank"><img " /></a>
+            <div class="carousel-caption">
+               <p>{{ item.title|title }}</p>
+               <p class="small">Click On Image to View Original Size</p>
+            </div>
+            
+            
+         </div>
+         <!-- Carousel nav -->
+         <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+         <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
+   </div>
+   <div class="well span5">
+      
+      <p><a href="/search/?q={{ item.category }}">{{ item.category }}</a> >> <a href="/search/?q={{ item.subcategory }}">{{ item.subcategory }}</a> </p>
+      
+      <p><a href="/search/?q={{ item.category }}">{{ item.category }}</a></p>
+      <p>
+      <h3>{{ item.id }} Item ID</h3>
+      </p>
+      
+      
+      {{ form }}      
+      <h6>Find Other Popular Items</h6>
+      <ul class="unstyled">
+         <li><a href="/search/?q=">See What's For Sale</a></li>
+         <li><a href="/search/?q=dollars">Dollars</a></li>
+         <li><a href="/search/?q=gold">Gold</a></li>
+         </br>
+         <li><a href="/home/">Home Page</a></li>
+      </ul>
+      
+      <a href="/login/" class="small alert-danger">Please Login To Add Item To Cart</a> Or <a href="/register/" class="small alert-info"> Sign Up </a>
+      {{ form }}    
+      <ul class="unstyled">
+         <li><a href="/search/?q=">See What's For Sale</a></li>
+         <li><a href="/search/?q=dollars">Dollars</a></li>
+         <li><a href="/search/?q=gold">Gold</a></li>
+         </br>
+         <li><a href="/home/">Home Page</a></li>
+      </ul>
+      
+   </div>
+</div>
+<div class="span12">
+   <h2>Description</h2>
+   <p class="description">{{ item.description }}</p>
+</div>
+<script type="text/javascript">
+   // Load this when the DOM is ready
+  $(document).ready(function(){
+     $('#myCarousel').carousel();
+   });
+</script>
+
+<!-- 
+    {#
+    Page: view_item.html
+    Purpose: View Item Details from search result or link to item 
+    Status: Required
+    This Template is Passed to the layout.html as {{ content }}
+    HTML / CSS Notes: 
+    Search Functionality
+      I used the generic search url /search/ with the sub or category name to allow users who are interested in the same, to find. 
+      
+    Variables This Section:
+    
+    item
+      Description: Basic for sale variable
+      
+      .title
+        Description: Title as entered by the shop owner
+        
+      .category
+        Description: Category for the item, categories are set at the marketplace level
+        
+      .subcategory
+        Description: Subcategory for the item, categories are set at the marketplace level. Must have a parent Category
+    
+      .description
+        Description: Item Description as entered by shop admin
+        
+    img
+      Description: img for the item
+      
+      .original
+      Description: Uses the actual image submitted, not a smaller one. This can be very high resolution, with no cap, except at the shop level
+    
+    
+      Description: Checks if the user is logged, so we know to put the bid button or link to login
+      Note: Need to Add Follow link to redirect after login
+    
+    {{ MEDIA_URL }}
+      Description: This is the marketplace media url, do not alter, for convience, we keep galleria image JS and associated files available for everyone. Again, you may add to your assets class your own image, gallery, the URL string is {{ asset_url }}
+    
+    Filters on this Page
+    |title
+      Description: Jinja2 filter that ensures text string is Title Case.
+    
+    
+    Variable to iterate over
+    None
+    
+    Java Script:
+      Description: Galleria image gallery. You may substitute as needed
+    
+    Author: Stephen Power
+    #}
+    -->
+<!--JS for image gallery, please use another if you want, just remember to include it in your assets and layout.html-->
+            </div>
+            <!-- FOOTER --> 
+            <hr>
+         <footer>
+               {{ footer }} 
+               <div id="label-info">
+                  <div class="span3">
+                     <h5>About Us</h5>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a blandit lectus. Praesent cras amet.</p>
+                     <a href="/about_us/">Read more</a>
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <h5>Quick Navigation</h5>
+                     
+<P><A HREF="home.html">Home</A></P>
+<P><A HREF="auctions.html">Auctions</A></P>
+<P><A HREF="for_sale.html">For Sale</A></P>
+<P><A HREF="login.html">Login</A></P>
+<P><A HREF="register.html">Register</A></P>
+
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     <form action="search.html" method="get">
+                        <input type="text" `placeholder="Search "  name="q" id="s" class="span2"/>
+                     </form>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <hr />
+                     <h5>Website Policies</h5>
+                     <ul class="unstyled">
+                        <li><a href="privacy_policies.html">Privacy Policy</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                        <li><a href="terms_of_service.html">Terms of Service Policy</a></li>
+                     </ul>
+                  </div>
+                  <div class="span2">
+                     <h5>Latest Blog Posts</h5>
+                     <p><a href="blog.html">Django Market Blog Post</a></p>
+                     <p>Posted on 2013-02-14 16:59</p>
+                     <p>{{ last_post.body|truncate(100) }}</p>
+                  </div>
+               </div>
+            </footer>
+        </div> <!-- /container -->
+    </body>
+</html>

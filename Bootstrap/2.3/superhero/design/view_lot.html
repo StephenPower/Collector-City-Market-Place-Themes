@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Django Market Theme Designer - Django Market view_lot.html</title>
+        <meta name="description" content=" " />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../assets_url/bootstrap.css">               
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/bootstrap.min.gzip.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/modernizr-2.6.2.min.gzip.js"></script>
+
+        
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse">
+                       <ul class="nav">
+<li><a href="home.html">Home</a></li>
+<li><a href="for_sale.html">For Sale</a></li>
+<li><a href="auctions.html">Auctions</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="about_us.html">About Us</a></li>
+    <li><a href="login.html" id="">Login</a></li>
+<li><a href="register.html">Register</a></li>
+</ul>
+
+
+                       <form action="search.html" method="get" class="navbar-search span3">
+                          <input type="text" class="search-query span2" placeholder=" Search " name="q" id="q" data-provide="typeahead" data-items="4" data-source="[]" />
+                       </form>
+                       
+                       <p class="navbar-text pull-right">
+                          <a class="text-error" href="my_shopping.html">Cart 10</a> &nbsp;<a class="text-error" href="my_orders.html">Orders</a>
+                       </p>
+                       
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <!-- FLASH MESSAGE  -->
+            <!-- Page Content is added here from the other pages-->
+            <div class="row-fluid" id="content">
+               <div id="alert alert-block fade in">
+                  
+               </div>
+               <div class="span12" id="ViewLot">
+<h2>{{lot.title|title}}</h2>
+</div>
+  <div class="span4 offset1">
+    <div id="myCarousel" class="carousel">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        
+          
+          <div class="item active">
+            <a href="{{ img.original }}" target="_blank"><img " /></a>
+            <div class="carousel-caption">
+              <p>{{ lot.title|title }}</p>
+              <p>Click On Image to View Original Size</p>
+            </div>
+          </div>
+          
+          <div class="item">
+            <a href="{{ img.original }}" target="_blank"><img " /></a>
+            <div class="carousel-caption">
+              <p>{{ lot.title|title }}</p>
+              <p>Click On Image to View Original Size</p>
+            </div>
+          </div>
+          
+        
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+  </div>
+  <div class="well span6 unstyled" id="LogBid">
+      
+        <p><a href="/search/?q={{ lot.category }}">{{ lot.category }}</a> >> <a href="/search/?q={{ lot.subcategory }}">{{ lot.subcategory }}</a></p>
+      
+        <p><a href="/search/?q={{ lot.category }}">{{ lot.category }}</a></p>
+      
+        <p>Time Left: <span class="big">{{ lot.time_left }} ({{ lot.session_end }})</span></p>
+      
+        {{ form }}      
+      
+          <h3>Login Required When Bidding!</h3>
+          {{ form }}    
+  
+  </div>
+<div class="span11" id="LotDescription">
+<h3>Description</h3>
+  {{ lot.description }}
+</div>
+<script type="text/javascript">
+    $('.ui-dialog-buttonset').find('button:contains("Cancel")').addClass('cancelButtonClass');
+</script>
+<!-- 
+    {#
+    Page: view_lot.html
+    Purpose: View Lot Details from search result or link to lot 
+    Status: Required
+    This Template is Passed to the layout.html as {{ content }}
+    HTML / CSS Notes: 
+      
+    Variables This Section:
+    
+    lot
+      Description: Basic auction variable
+      
+      .title
+        Description: Title as entered by the shop owner
+        
+      .category
+        Description: Category for the lot, categories are set at the marketplace level
+        
+      .subcategory
+        Description: Subcategory for the lot, categories are set at the marketplace level. Must have a parent Category
+    
+      .description
+        Description: Lot Description as entered by shop admin
+    img
+      Description: img for the lot
+      
+      .original
+      Description: Uses the actual image submitted, not a smaller one. This can be very high resolution, with no cap, except at the shop level
+    
+    {{ lot.time_left }} 
+      Description: Amount to time left to bid on a lot. Required.
+    
+    {{ lot.session_end }}
+      Description: Date / Time when the auction closes. Required.
+    
+    
+      Description: Checks if the user is logged, so we know to put the bid button or link to login
+      Note: Need to Add Follow link to redirect after login
+    
+    
+    Filters on this Page
+    None
+    
+    Variable to iterate over
+    None
+    
+    Java Script:
+      Description: Galleria image gallery. You may substitute as needed
+    
+    Author: Stephen Power
+    #}
+    -->
+            </div>
+            <!-- FOOTER --> 
+            <hr>
+         <footer>
+               {{ footer }} 
+               <div id="label-info">
+                  <div class="span3">
+                     <h5>About Us</h5>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a blandit lectus. Praesent cras amet.</p>
+                     <a href="/about_us/">Read more</a>
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <h5>Quick Navigation</h5>
+                     
+<P><A HREF="home.html">Home</A></P>
+<P><A HREF="auctions.html">Auctions</A></P>
+<P><A HREF="for_sale.html">For Sale</A></P>
+<P><A HREF="login.html">Login</A></P>
+<P><A HREF="register.html">Register</A></P>
+
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     <form action="search.html" method="get">
+                        <input type="text" `placeholder="Search "  name="q" id="s" class="span2"/>
+                     </form>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <hr />
+                     <h5>Website Policies</h5>
+                     <ul class="unstyled">
+                        <li><a href="privacy_policies.html">Privacy Policy</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                        <li><a href="terms_of_service.html">Terms of Service Policy</a></li>
+                     </ul>
+                  </div>
+                  <div class="span2">
+                     <h5>Latest Blog Posts</h5>
+                     <p><a href="blog.html">Django Market Blog Post</a></p>
+                     <p>Posted on 2013-02-14 19:23</p>
+                     <p>{{ last_post.body|truncate(100) }}</p>
+                  </div>
+               </div>
+            </footer>
+        </div> <!-- /container -->
+    </body>
+</html>

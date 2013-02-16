@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Django Market Theme Designer - Django Market view_history_lot.html</title>
+        <meta name="description" content=" " />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../assets_url/bootstrap.css">               
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/bootstrap.min.gzip.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/modernizr-2.6.2.min.gzip.js"></script>
+
+        
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse">
+                       <ul class="nav">
+<li><a href="home.html">Home</a></li>
+<li><a href="for_sale.html">For Sale</a></li>
+<li><a href="auctions.html">Auctions</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="about_us.html">About Us</a></li>
+    <li><a href="login.html" id="">Login</a></li>
+<li><a href="register.html">Register</a></li>
+</ul>
+
+
+                       <form action="search.html" method="get" class="navbar-search span3">
+                          <input type="text" class="search-query span2" placeholder=" Search " name="q" id="q" data-provide="typeahead" data-items="4" data-source="[]" />
+                       </form>
+                       
+                       <p class="navbar-text pull-right">
+                          <a class="text-error" href="my_shopping.html">Cart 10</a> &nbsp;<a class="text-error" href="my_orders.html">Orders</a>
+                       </p>
+                       
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <!-- FLASH MESSAGE  -->
+            <!-- Page Content is added here from the other pages-->
+            <div class="row-fluid" id="content">
+               <div id="alert alert-block fade in">
+                  
+               </div>
+               <!-- Lot History Table -->
+<div class="span12">
+<div class="span4 offset1">
+   <p><strong>Bidders: {{ lot.count_bidders }}</strong></p>
+      <p><strong>Bids: {{ lot.count_bids }}</strong></p>
+      <p><strong>Time Left: {{ lot.time_left_long }}</strong></p>
+      <img src="" width="80px" />
+</div>
+    <div class="well span5" id="ViewHistoryLot">
+      <h4>Lot: {{ lot.title }}</h4>
+      <p>{{ description }}</p>
+</div>
+</div>
+<h3><a class="btn-primary btn-large" href="{{ lot.dir_back }}">Back to {{ lot.title }}</a></h3>
+<div class="span8 offset2">
+    <h4>Bidding History</h4>
+      <table class="table">
+         <thead>
+            <tr>
+               <th>Bidder</th>
+               <th>Bid amount</th>
+               <th>Bid time</th>
+            </tr>
+         </thead>
+         <tbody>
+            
+            <tr>
+               <td>{{ bid.bidder_username }}</td>
+               <td>{{ bid.bid_amount }}</td>
+               <td>{{ bid.bid_time }}</td>
+            </tr>
+            
+         </tbody>
+      </table>
+ </div>
+<!-- Back To Lot -->
+
+<!-- 
+   {#
+   Page: view_history_lot.html
+   Purpose: Allows a user to see detailed bidding information, must be logged in.
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes:
+   
+   Variables on This Page:
+   
+   {{ Descripton }}
+   	Description: Lot Description
+   
+   
+   lot
+   	Description: Basic Variable for auctions. 
+   	
+   	.title
+   		Description: Lot Title as entered by the shop owner
+   	
+   	.count_bids
+   		Description: Number of Bids on a lot. Used to check lot bids and form if then tests
+   	
+   	.count_bidders
+   		Description: Number of Bidders on a lot. Used to check lot bids and form if then tests
+   
+   	.dir_back
+   		Description: URL back to lot	
+   
+   bid
+   	Description: Variable that describes the one or many bids on a lot
+   	
+   	.bidder_username
+   		Description: Bidder User Name 
+   	.bid_amount
+   		Description: Bid Amount
+   	.bid_time
+   		Description: Time bid was logged
+   Filters on this Page
+   
+   
+   |title
+   	Description: Jinja2 filter to Title Case a string
+   	See Jinja2 Documentation for additional information on html escaping. 
+   
+   
+   Variables to iterate over
+   
+   
+   
+   Author: Stephen Power
+   #}
+   -->
+            </div>
+            <!-- FOOTER --> 
+            <hr>
+         <footer>
+               {{ footer }} 
+               <div id="label-info">
+                  <div class="span3">
+                     <h5>About Us</h5>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a blandit lectus. Praesent cras amet.</p>
+                     <a href="/about_us/">Read more</a>
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <h5>Quick Navigation</h5>
+                     
+<P><A HREF="home.html">Home</A></P>
+<P><A HREF="auctions.html">Auctions</A></P>
+<P><A HREF="for_sale.html">For Sale</A></P>
+<P><A HREF="login.html">Login</A></P>
+<P><A HREF="register.html">Register</A></P>
+
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     <form action="search.html" method="get">
+                        <input type="text" `placeholder="Search "  name="q" id="s" class="span2"/>
+                     </form>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <hr />
+                     <h5>Website Policies</h5>
+                     <ul class="unstyled">
+                        <li><a href="privacy_policies.html">Privacy Policy</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                        <li><a href="terms_of_service.html">Terms of Service Policy</a></li>
+                     </ul>
+                  </div>
+                  <div class="span2">
+                     <h5>Latest Blog Posts</h5>
+                     <p><a href="blog.html">Django Market Blog Post</a></p>
+                     <p>Posted on 2013-02-14 17:10</p>
+                     <p>{{ last_post.body|truncate(100) }}</p>
+                  </div>
+               </div>
+            </footer>
+        </div> <!-- /container -->
+    </body>
+</html>

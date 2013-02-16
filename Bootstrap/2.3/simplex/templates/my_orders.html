@@ -1,0 +1,297 @@
+<!-- orders -->
+{% if my_orders %}
+<div class="span5 offset1">
+<H2>Order History</H2>
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+   <li class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
+   {% for sell in my_orders|sort(true,false) %}
+   <li><a href="#{{ sell.id }}" data-toggle="tab">OrderID:{{ sell.id }}</a></li>
+   {% endfor %}
+</ul>
+
+<div id="my-tab-content" class="tab-content">
+   <div class="tab-pane active" id="summary">
+      <p>Please use the navigation on the left to review your orders.</p>
+   </div>
+   {% for sell in my_orders|sort(true,false) %}
+   <div class="tab-pane" id="{{ sell.id }}">
+      <div class="OrderGroup">
+         <h5 class="BorderOnTop">Order ID: {{ sell.id }}</h5>
+         <h5> Order Total: {{ sell.total }}</h5>
+         <p>Date: {{ sell.date_time }}</p>
+        <h4>Order Details</h4>
+                <table class="table table-condensed">
+                  <thead>
+                     <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for item_sell in sell.item_set %}
+                     <tr>
+                        <td>
+                           <a href="{{ item_sell.url }}"><img src="{{ item_sell.image.small}}" width="30Px" class="OrderTitle" alt="{{ item_sell.title|title }} -{{ item_sell.price }} " /></a>
+                        </td>
+                        <td><a class="OrderTitle" href="{{ item_sell.url }}">{{ item_sell.title|title }}</a>
+                        </td>
+                        <td><a href="{{ item_sell.url }}">Price: {{ item_sell.price }}</a></td>
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+               <h4>Payment History</h4>
+               <table class="table table-condensed"
+                  <thead>
+                     <tr>
+                   
+                        <th>Status</th>
+                         <th>Date</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for payment in sell.payment_history|sort %}
+                     <tr>
+                    {% if payment.state == 'Pending' %}
+                     <td class="alert alert-info"> Payment Received: </td>
+                     <td class="alert alert-info">{{ payment.date_time }} </td>
+                   {% endif %}
+                  {% if payment.state == 'Paid' %}
+                     <td class="alert alert-success">   Payment Processed: </td>
+                     <td class="alert alert-success"> {{ payment.date_time }} </td>
+                   {% endif %}
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+                <h4>Shipping History</h4>
+               <table class="table table-condensed"> 
+                  <thead>
+                     <tr>
+                         <th>Status</th>
+                         <th>Date</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+      <tr>
+                     {% if sell.shipping_history %}
+                     {% for shipping in sell.shipping_history %}
+                  {% if shipping.state == 'Pending' %}
+                     <td class="alert alert-info">  Order Received: </td>
+                     <td class="alert alert-info">{{ shipping.date_time }}  </td>
+                   {% endif %}
+                  {% if shipping.state == 'Dispatched' %}
+                     <td class="alert">  Order Processed: </td>
+                 <td class="alert">{{ shipping.date_time }}  </td>
+                   {% endif %}
+                  {% if shipping.state == 'Fulfilled' %}
+                     <td class="alert alert-success">  Order Shipped: </td>
+                   <td class="alert alert-success">{{ shipping.date_time }}  </td>
+                   {% endif %}
+            
+                      
+                     </tr>
+                     {% endfor %}
+                     {% endif %}
+                  </tbody>
+               </table>
+
+
+      </div><!-- End Order Group    -->
+   </div>
+   {% endfor %}
+</div>
+</div>
+</div>
+{% else %}
+<h2>No Orders</h2>
+{% endif %}
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+<!--  bids -->
+{% if bids %}
+<div class="span5">
+<h2>My Bids</h2>
+{% for lot in bids %}
+<div class="row-fluid" id="LotHistory">
+   <div class="span2">
+      <a href="{{ lot.url }}"><img src="{% if lot.image.small %}{{ lot.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" width="100px" alt="{{ lot.title }}" /></a>
+   </div>
+   <div class="span3">
+      <h3><a href="{{ lot.url }}">{{ lot.title|title }}</a></h3>
+      <p>
+         {% if lot.is_active %}
+         {% if lot.count_bids is sameas 0 %}
+         Starting bid
+         {% else %}
+         Current Bid
+         {% endif %}
+         {% else %}
+         Final Bid
+         {% endif %}
+         : {{ lot.current_bid }}
+      </p>
+      <p>Time Left: {{ lot.time_left }}</p>
+   </div>
+   <h5>Bidding History</h5>
+   <div class="span6">
+      <table class="table small">
+         <thead>
+            <tr>
+               <th>Bidder</th>
+               <th>Bid amount</th>
+               <th>Bid time</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for bid in lot.history %}
+            <tr>
+               <th>{{ bid.bidder_username }}</th>
+               <th>{{ bid.bid_amount }}</th>
+               <th>{{ bid.bid_time }}</th>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+</div>
+{% endfor %}<!-- End of For lot in bids -->
+</div>
+{% else %}<!-- If there are no bids, you end of here -->
+<h2>No Bids</h2>
+<!-- End of If Bids-->
+{% endif %}
+
+<!-- 
+   {#
+   Page: my_orders.html
+   Purpose: Shows Bidding and Order History for the logged in user
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes:
+   
+   Variables on This Page:
+   
+   {{ bids }}
+   	Description: Checks to see if a user has any current or past bids. If not, No Bids is displayed.
+   
+   
+   lot
+   	Description: Basic Variable for auctions. 
+   
+   	.qty
+   		Description: Amount of the items purchased
+   		
+   	.current_bid
+   		Description: Amount, in USD, of the current bid.
+   		
+   	.title
+   		Description: Lot Title as entered by the shop owner
+   	
+   	.count_bids
+   		Description: Number of Bids on a lot. Used to check lot bids and form if then tests
+   	
+   	.is_active
+   		Description: Lot Status. Active or closed. Used to test if the lot is active or closed for bidding
+   	.url
+   		Description: Lot Url
+   	
+   	.img.original
+   		Description: Lot Original image, This can be huge, Django Shop does not limit image size 
+   
+   	.time_left
+   		Description: If the lot is active, the amount of time left to bid.
+   			
+   	.history
+   		Description: itterable variable that returns bid information: bidder_username, bid_amount, bid_time
+   
+   bid
+   	Description: Variable that describes the one or many bids on a lot
+   	
+   	.bidder_username
+   		Description: Bidder User Name 
+   	.bid_amount
+   		Description: Bid Amount
+   	.bid_time
+   		Description: Time bid was logged
+   
+   Sell
+   	Description: Items sold to user
+   	
+   	.id
+   		Description: Unique ID for the Items sold 
+   	
+   	.date_time
+   		Description: Date / Time Item was sold
+   	
+   	.total
+   		Description: Total value of the sale
+   
+   	.item_set
+   		Description: The set of items sold to the users. Used with Item_sell to describe the sold items
+   
+   	.shipping_history
+   		Description: Shipping History of the item, it can go through three states: Pending, Dispatched, Fufilled
+   
+   item_sell
+   
+   	.url
+   		Description: URL of the item sold. 
+   	
+   	.image	
+   		Description: Image url of the item
+   	
+   	.title
+   		Description: Title of the Item Sold
+   	
+   	.price
+   		Description: Price of the Item Sold
+   
+   Payment
+   	Description: Payment Variable for items sold
+   	
+   	.date_time
+   		Description: Payment Date/ Time for Payment Processing
+   	
+   	.state
+   		Description: Payments are submitted and go through three states: Pending, Paid and Failed
+   		
+   {% my_orders %}
+   	Description: Users orders, can be used to check if something has been sold and to iterate if sold items exist in order history.
+   
+   asset_url
+   	Description: URL for all the files (CSS, JS etc) in your asset folder.
+   
+   Filters on this Page
+   
+   
+   |title
+   	Description: Jinja2 filter to Title Case a string
+   	See Jinja2 Documentation for additional information on html escaping. 
+   
+   |sort
+   	Description: Jinja2 filter to Sort an iterable. From Jinja2 Documentation:
+   	
+   		Per default it sorts ascending, if you pass it true as first argument it will reverse the sorting.
+   		If the iterable is made of strings the third parameter can be used to control the case sensitiveness of the comparison which is disabled by default.	
+   		
+   	See Jinja2 Documentation for additional information on html escaping. 
+   
+   Variables to iterate over
+   
+   {% for lot in bids %}
+   {% for bid in lot.history %}
+   {% for sell in my_orders|sort(true,false) %}
+   {% for payment in sell.payment_history %}
+   {% for item_sell in sell.item_set %}
+   {% for shipping in sell.shipping_history %}
+   
+   
+   Author: Stephen Power
+   #}
+   -->

@@ -1,0 +1,53 @@
+<div class="span12">
+ <h2>{{ about.title|title }}</h2>
+</div>
+
+<div class="span7">
+  
+   {{ about.body }}
+</div>
+<!--Map
+   <div class="span4">
+      {{ map }}
+   </div>
+   -->
+<ul class="well span4 unstyled">
+   <li class="side-header">Links to Professional</li>
+   <li class="side-header">Organizations</li>
+   <li><a href="#">Org1</a></li>
+   <li><a href="#">Org2</a></li>
+   <li><a href="#">Org3</a></li>
+   <li><a href="#">Org4</a></li>
+   <li><a href="#">Org5</a></li>
+</ul>
+
+<!-- 
+   {#
+   Page: about_us.html
+   Purpose: About us is a default page in Django Shop. It appears in the menu and the shop owner can edit the contents. 
+   Status: Required. 
+   This Template is Passed to the layout.html as {{ content }}
+   
+   Variables on This Page:
+   
+   about.title
+    Description: Title entered on the about Us Page in the Django Market Shop Admin Site.
+    
+   about.body
+    Description: body text entered in the Django Market Shop Admin Site.
+   
+   {{ map }}
+    Description: variable to place the google map of the shop. Location based on data entered in the shop admin under general preferences. 
+   
+   Filters on this Page
+   |title
+    Description: Jinja2 filter to ensure Title Case for the string {{ about.title }}
+    Additional References: See Jinja2 Documentation for additional String Filters Available
+   
+   Variable to iterate over
+   None
+    Description: N/A
+   
+   Author: Stephen Power
+   #}
+   -->

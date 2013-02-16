@@ -1,0 +1,30 @@
+
+   <div class="span9 offset2">
+      <h2>Congratulations! Your purchase has been completed!</h2>
+      <h5>Please follow this instructions to get your order:</h5>
+      <p>{{ instructions|safe }}</p>
+     <p>To continue shopping checkout our <a href="/for_sale/">coins for sale</a></p>
+   </div>
+<!-- 
+   {#
+   Page: manual_payment.html
+   Purpose: Page is displayed when a shop has manual payment enabled.
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes: 
+   		
+   Variables on This Page:
+   
+   {{ instructions }}
+   	Description: Instructions entered in the Shop Admin/ Preference /Payments / Manual Payments
+   	
+   Filters on this Page
+   |Safe
+   	Description: Allows HTML to be passed to the template
+   
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}
+   -->

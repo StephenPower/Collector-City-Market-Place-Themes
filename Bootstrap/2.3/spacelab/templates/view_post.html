@@ -1,0 +1,60 @@
+<div class="span12">
+    <h3 >{{ post.title|title }}</h3>
+<div class="span7 post-block">
+    <p>{{ post.date_time }}</p>      
+    <p class="post-body">{{ post.body }}</p>
+    <a href="{{ url }}" class="btn btn-primary">Back</a>
+  </div>
+<div class="span4">
+         <ul class="well">
+        <li class="side-header">Popular Searches</li>
+        <li><a href="/search/?q=dollars">Dollars</a></li>
+        <li class="side-header">Popular Links</li>
+        <li><a href="/home/">Home</a></li>
+        <li><a href="/auctions/">Coins For AuctionDollars</a></li>
+        <li><a href="/for_sale/">Coins For Sale</a></li>
+        <li class="side-header">Blog Home Page</li>
+        <li><a href="/blog/">Blog</a></li>
+        <li>{{ lipsum(5,false,20,35) }} </li>
+      </ul>
+</div> 
+
+<!-- 
+   {#
+   Page: view_post.html
+   Purpose: When a user on the blog.html page clicks on a blog, this is the page that displays the entire blog post.
+   
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   
+   Variables on This Page:
+   
+   post
+    Description: Basic Variable for the blog post viewed.
+   
+    .date_time
+      Description: Date Time for the shop. See Jinja2 Docs on how to change format for locality
+      
+    .post.body
+      Description: Post Body Text as entered in the shop admin for the blog entry
+   
+    .title
+      Description: Blog Title as entered by the shop owner
+   
+   {{ url }}
+    Description: URL to blog.html page
+    
+   Filters on this Page
+   |title
+    Description: Jinja2 filter to ensure Title Case for the string {{ post.title }}
+    See Jinja2 Documentation for additional String Filters Available
+   
+   Variable to iterate over
+   None
+   
+   Java Script:
+   None
+    
+   Author: Stephen Power
+   #}
+   -->

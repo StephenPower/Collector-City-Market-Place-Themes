@@ -1,0 +1,34 @@
+<div class="span4 offset4">
+<h3>Registered User's Login</h3>
+<p> If you have registered with a Facebook, Google or Twitter,<a href="/register/"> please login here </a>
+<div class="well">
+  <form action="." method="POST" class="form">
+     <fieldset>
+        {{ form_login }}
+        <button type="submit" class="btn btn-primary">Login</button>
+     </fieldset>
+  </form>
+</div>
+</div>
+<!-- 
+   {#
+   Page: login.html
+   Purpose: Shops login page. You need to be logged in to bid, buy, view cart or view purchase history
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes: 
+      
+   Variables on This Page:
+   
+   {{ form_login }}
+    Description: login formed passed to shops. This must be present an unaltered
+   
+   Filters on this Page
+   None
+   
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}
+   -->

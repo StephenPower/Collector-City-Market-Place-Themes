@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Django Market Theme Designer - Django Market home.html</title>
+        <meta name="description" content=" " />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../assets_url/bootstrap.css">               
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/bootstrap.min.gzip.js"></script>
+		<script src="https://d4dqt8qzmbeux.cloudfront.net/themes/bootstrap/2.3/js/modernizr-2.6.2.min.gzip.js"></script>
+
+        
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse">
+                       <ul class="nav">
+<li><a href="home.html">Home</a></li>
+<li><a href="for_sale.html">For Sale</a></li>
+<li><a href="auctions.html">Auctions</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="about_us.html">About Us</a></li>
+    <li><a href="login.html" id="">Login</a></li>
+<li><a href="register.html">Register</a></li>
+</ul>
+
+
+                       <form action="search.html" method="get" class="navbar-search span3">
+                          <input type="text" class="search-query span2" placeholder=" Search " name="q" id="q" data-provide="typeahead" data-items="4" data-source="[]" />
+                       </form>
+                       
+                       <p class="navbar-text pull-right">
+                          <a class="text-error" href="my_shopping.html">Cart 10</a> &nbsp;<a class="text-error" href="my_orders.html">Orders</a>
+                       </p>
+                       
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <!-- FLASH MESSAGE  -->
+            <!-- Page Content is added here from the other pages-->
+            <div class="row-fluid" id="content">
+               <div id="alert alert-block fade in">
+                  
+               </div>
+               <div class="span12">
+<h2>Django Market Home Page</h2>
+</div>
+
+<div class="carousel slide span6" id="myCarousel">
+   <!-- Carousel items -->
+    <div class="carousel-inner">
+      
+      
+      <div class="active item">
+         <a href="{{item.url}}">
+            <img src="" alt="{{ item.title }}" />
+            <div class="carousel-caption">
+               <h4> {{ item.title}} </h4>
+               <p>{{ item.description|truncate(160) }}</p>
+            </div>
+         </a>
+      </div>
+      
+      <div class="item">
+         <a href="{{item.url}}">
+            <img src="" alt="{{ item.title }}" />
+            <div class="carousel-caption">
+               <h4> {{ item.title}} </h4>
+               <p>{{ item.description|truncate(60) }}</p>
+            </div>
+         </a>
+      </div>
+      
+      
+   </div>
+   <!-- Carousel nav -->
+   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+<div class="span3 offset2">
+   <ul class="well unstyled">
+      <li class="side-header">Django Market Home Page</li>
+      <li> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut massa sed lacus feugiat cras amet. </li>
+      <li class="side-header">Browse</li>
+      <li><a href="/search/?=">Item's For Sale</a></li>
+      <li class="side-header">Sign Up For Our Newsletter</li>
+      <li>
+         <div class="form-stacked " id="EmailSignUp">
+            
+<DIV ID="mail_list_form" DIR="LTR">
+	<FORM NAME="form" ACTION="../shellscript" METHOD="POST">
+		<P><A NAME="id_email"></A><A NAME="mail_list_submit_btn"></A>Enter
+		Your Email Address: <INPUT TYPE=TEXT NAME="email" SIZE=22 MAXLENGTH=75 STYLE="width: 1.92in; height: 0.31in">
+		<INPUT TYPE=SUBMIT VALUE="Subscribe" STYLE="width: 1.16in; height: 0.4in">
+				</P>
+	</FORM>
+</DIV>
+
+          </div>
+      </li>
+   </ul>
+</div>
+
+<div class="span8">
+   <hr />
+   <h3>Sample Colors For this Theme</h3>
+   <div class="label-important">
+      <p>This is Important Color</p>
+   </div>
+   <div class="label-warning">
+      <p>This is Warning Color</p>
+   </div>
+   <div class="label-warning">
+      <p>This is Success Color</p>
+   </div>
+   <div class="label-info">
+      <p>This is info Color</p>
+   </div>
+   <div class="label-inverse">
+      <p>This is inverse Color</p>
+   </div>
+   <a href="refund.html" title="Refund Policy">Refund Policy</a>
+</div>
+
+
+<!-- 
+   {#
+   Page: home.html
+   Purpose: Shops home page 
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes: 
+    Please note, the HTML constrains the home.img size, you may want to alter
+   
+   Variables on This Page:
+   
+   home
+    Description: Basic Variable for the home page 
+      
+    .body
+      Description: text as entered in shop admin
+      
+    .title
+      Description: Item title as entered by the shop owner
+    
+    .image
+      Description: Optional: Shop admin can enter home page image
+    
+    .img.url
+      Description: url for the home image
+   
+   
+<DIV ID="mail_list_form" DIR="LTR">
+	<FORM NAME="form" ACTION="../shellscript" METHOD="POST">
+		<P><A NAME="id_email"></A><A NAME="mail_list_submit_btn"></A>Enter
+		Your Email Address: <INPUT TYPE=TEXT NAME="email" SIZE=22 MAXLENGTH=75 STYLE="width: 1.92in; height: 0.31in">
+		<INPUT TYPE=SUBMIT VALUE="Subscribe" STYLE="width: 1.16in; height: 0.4in">
+				</P>
+	</FORM>
+</DIV>
+
+    Description: Allows users to sign up for shop's mailing list
+   
+   Filters on this Page
+   None
+   
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}.....
+   -->
+            </div>
+            <!-- FOOTER --> 
+            <hr>
+         <footer>
+               {{ footer }} 
+               <div id="label-info">
+                  <div class="span3">
+                     <h5>About Us</h5>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a blandit lectus. Praesent cras amet.</p>
+                     <a href="/about_us/">Read more</a>
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <h5>Quick Navigation</h5>
+                     
+<P><A HREF="home.html">Home</A></P>
+<P><A HREF="auctions.html">Auctions</A></P>
+<P><A HREF="for_sale.html">For Sale</A></P>
+<P><A HREF="login.html">Login</A></P>
+<P><A HREF="register.html">Register</A></P>
+
+                  </div>
+                  <div class="span3">
+                     <h5>Quick Search</h5>
+                     <form action="search.html" method="get">
+                        <input type="text" `placeholder="Search "  name="q" id="s" class="span2"/>
+                     </form>
+                     
+                     <p><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></p>
+                     
+                     <hr />
+                     <h5>Website Policies</h5>
+                     <ul class="unstyled">
+                        <li><a href="privacy_policies.html">Privacy Policy</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                        <li><a href="terms_of_service.html">Terms of Service Policy</a></li>
+                     </ul>
+                  </div>
+                  <div class="span2">
+                     <h5>Latest Blog Posts</h5>
+                     <p><a href="blog.html">Django Market Blog Post</a></p>
+                     <p>Posted on 2013-02-14 19:23</p>
+                     <p>{{ last_post.body|truncate(100) }}</p>
+                  </div>
+               </div>
+            </footer>
+        </div> <!-- /container -->
+    </body>
+</html>

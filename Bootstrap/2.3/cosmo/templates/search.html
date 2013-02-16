@@ -1,0 +1,78 @@
+<div class="span11">
+   <h2>Search Results</h2>
+   <div class="SearchPageBox">
+      <form action="{{ url_search }}" method="get">
+         <input type="text" `placeholder="Search.... " name="q" class="span8" />
+      </form>
+   </div>
+</div>
+<div id="Search" class="span11">
+   {% if results|length  == 60 %}
+   <div class="NoResults">
+      <div class="span2 debar-nav well hidden-phone">
+         <ul class="nav nav-list unstyled">
+            {% for categories in shop_categories %}
+            <li><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></li>
+            {% endfor %}
+         </ul>
+      </div>
+      <div class="span8">
+         <h2>Sorry we didn't have what you wanted...</h2>
+         <h3>Please Look at Our...</h3>
+         <b><a href="/for_sale/">Rare Coins For Sale</a></b>
+            <p><b> <a href="/auctions/">Online Coin Auctions</a></b></p>
+            <p><b> <a href="/home">Our Home Page</a></b></p>
+     </div>
+   </div>
+</div>
+   {% else %}
+   <ul class="well unstyled span3">
+      <li class="side-header">Category Search</li>
+      {% for categories in shop_categories %}
+      <li><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></li>
+      {% endfor %}
+   </ul>
+   <div class="span6">
+      <!-- **************************** -->
+      {{ results }}
+      <!-- **************************** -->
+   </div>
+   <ul class="span3 well unstyled">
+      <li class="side-header">Other Search Terms</li>
+      {% for categories in shop_subcategories %}
+      <li><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></li>
+      {% endfor %}
+   </ul>
+{% endif %}
+<div class="row-fluid" id="Pagination">
+   <div class="pagination span8 offset3">
+      {{ paginator }}
+   </div>
+</div>
+
+<!-- 
+   {#
+   Page: search.html
+   Purpose: Page is displayed when a shop has manual payment enabled.
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes: 
+      
+   Variables on This Page:
+   
+   {{ results }}
+    Description: Results set from Django Market's Search. Must be displayed as is, no alterations
+   
+   {{ paginator }}
+    Description: If the search results are > 20 , this page will paginated, this variable must be included. 
+    
+   Filters on this Page
+   |length
+    Description: Jinga filter that reports the length of the results set. This is used on this page to query for no results, so an alternative can be displayed. 
+    
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}
+   -->

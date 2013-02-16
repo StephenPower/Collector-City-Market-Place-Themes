@@ -1,0 +1,94 @@
+<div class="span12">
+   <h3>For Sale Items</h3>
+   <div class="SearchPageBox">
+      <form action="/search/" method="get">
+         <input type="text" `placeholder="Search.... " name="q" class="span8" />
+      </form>
+   </div>
+</div>
+<ul class="well span3 unstyled">
+   <li class="side-header">Category Search</li>
+   {% for categories in shop_categories %}
+   <li><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></li>
+   {% endfor %}
+</ul>
+{% if not items %}
+<h3>No items for sale.</h3>
+{% endif %}
+<div class="span5">
+<table class="table">
+      <thead>
+         <tr>
+            <th></th>
+            <th></th>
+         </tr>
+      </thead>
+      {% for item in items %}
+      <tr>
+         <td> <a href="{{item.url}}">
+            <img src="{% if item.image.small %}{{ item.image.small }}{% else %}{{ 'no_photo_small.png'|asset_url }}{% endif %}" alt="{{ item.title }}" />
+            </a>
+         </td>
+         <td><a href="{{item.url}}">
+            <h5>{{item.title|title}}</h5>
+            <h6 class="money">{{item.price}}</h6>
+            </a>
+         </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+   </table>
+</div>
+<ul class="span3 well unstyled">
+   <li class="side-header">Other Search Terms</li>
+   {% for categories in shop_subcategories %}
+   <li><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></li>
+   {% endfor %}
+   {% for categories in shop_subcategories %}
+   <li><a href="/search/?q={{categories.name}}">{{ categories.name }}</a></li>
+   {% endfor %}
+</ul>
+<div class="row">
+<div class="pagination offset3">
+   {{ paginator }}
+</div>
+</div>
+
+
+<!-- 
+   {#
+   Page: for_sale.html
+   Purpose: main page that displays items for sale, when a user clicks on the menu link
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes:
+   
+   Variables on This Page:
+   item
+    Description: Basic Variable for the items sold in shopping cart. All for sale items share the item variable
+   
+    .url
+      Description: item url
+      
+    .price
+      Description: Price of the item 
+      
+    .title
+      Description: Item title as entered by the shop owner
+    
+    .image.small
+      Description: We don't want to show a heavy page with 16 items per page, so we show a small image instead.
+      
+   {{ paginator }}:
+    Description: pagination variable, when there are more than 5 posts, pagination occurs. 
+   
+   Filters on this Page
+   |asset_url
+    Description: the url to the item referenced in the variable ie image url or css file url in layout.html
+   
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}
+   -->

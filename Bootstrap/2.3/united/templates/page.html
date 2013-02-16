@@ -1,0 +1,46 @@
+  <div class="well sidebar-nav  hidden-phone">
+    <ul class="nav nav-list">
+      <li class="nav-header">Search For</li>
+      <li><a href="/search/?q=gold">Gold</a></li>
+      <li><a href="/search/?q=dollars">Dollars</a></li>
+      <li><a href="/search/?q=half+cent">Quarters</a></li>
+    </ul>
+  </div> 
+  <div class="span8">
+    <h2>{{ page.title }}</h2>
+    <p>{{ page.body }}</p>
+  </div> 
+  <div class="visible-phone">
+    <h3>Popular Searches</h3>
+      <ul>
+        <li>Search For</li>
+        <li><a href="/search/?q=gold">Gold</a></li>
+        <li><a href="/search/?q=dollars">Dollars</a></li>
+        <li><a href="/search/?q=half+cent">Quarters</a></li>
+      </ul>
+  </div> 
+
+<!-- 
+   {#
+   Page: page.html
+   Purpose: User can add pages to their site, this is the template for those pages add by the Shop Admin 
+   Status: Required
+   This Template is Passed to the layout.html as {{ content }}
+   CSS Notes: 
+      
+   Variables on This Page:
+   {{ page.title }}
+    Description: Page Title As per Shop Admin Page Add
+    
+   {{ page.body }}
+    Description: Page body As per Shop Admin Page Add
+   
+   Filters on this Page
+   None
+   
+   Variable to iterate over
+   None
+   
+   Author: Stephen Power
+   #}
+   -->
